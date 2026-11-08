@@ -3,6 +3,8 @@
 Mudanças relevantes do projeto serão registradas aqui.
 
 ## Unreleased
+- Torna o landmark principal focável para que o link "Pular para o conteúdo" funcione melhor com navegação por teclado e adiciona testes de acessibilidade da estrutura principal.
+- Atualiza o atributo rel do link externo para declarar explicitamente noopener.
 - Atualiza as referências regulatórias e técnicas, incluindo CFP nº 9/2024, CFP nº 7/2025, Manual Orientativo do CFP (2025) e orientações atuais da ANPD sobre LGPD.
 - Reforça requisitos de acessibilidade, limites sobre registros psicológicos, análise de bases legais, papéis de tratamento e exclusão de crianças/adolescentes do MVP.
 - Reforça que consentimento não deve ser presumido como base legal universal e que o AcolheMente não substitui registros/documentos psicológicos profissionais.
