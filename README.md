@@ -40,7 +40,7 @@ Não adicionar serviços ou dependências sem justificativa.
 
 ## Desenvolvimento local
 
-Requisitos: Node.js 20 ou superior e npm.
+Requisitos: Node.js 20.17+ ou 22.9+ e npm (a CI utiliza Node.js 22).
 
 ```bash
 npm install
