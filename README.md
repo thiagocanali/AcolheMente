@@ -38,6 +38,24 @@ O primeiro MVP prioriza:
 
 A arquitetura deve permanecer simples, modular e evolutiva. Não adicionar serviços ou dependências sem justificativa.
 
+## Desenvolvimento local
+
+Requisitos: Node.js 22 ou superior e npm.
+
+```bash
+npm install
+npm run dev
+```
+
+Verificações antes de enviar alterações:
+
+```bash
+npm run typecheck
+npm run build
+```
+
+O GitHub Actions executa o typecheck e o build em pull requests e em atualizações da branch `main`.
+
 ## Documentação
 
 - [Visão do produto](docs/product/VISION.md)
