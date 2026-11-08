@@ -20,6 +20,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Update npm to a peer-resolution bugfix release
+        run: npm install --global npm@11.6.2
       - name: Install dependencies
         run: npm install
       - name: Component tests
