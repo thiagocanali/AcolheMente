@@ -9,7 +9,7 @@ import SiteFooter from './components/SiteFooter.vue'
 
     <SiteHeader />
 
-    <main id="conteudo">
+    <main id="conteudo" tabindex="-1">
       <section id="inicio" class="hero section-wrap">
         <div class="hero-copy">
           <div class="eyebrow"><span class="eyebrow-dot"></span> Um novo jeito de se aproximar do cuidado</div>
@@ -124,7 +124,7 @@ import SiteFooter from './components/SiteFooter.vue'
           <div class="section-kicker">Estamos começando</div>
           <h2>Um passo de cada vez. <em>Com cuidado em todos eles.</em></h2>
           <p>O AcolheMente está em desenvolvimento. Em breve, compartilharemos novidades sobre a plataforma e os próximos passos.</p>
-          <a class="button button-light" href="https://github.com/thiagocanali/AcolheMente" target="_blank" rel="noreferrer">
+          <a class="button button-light" href="https://github.com/thiagocanali/AcolheMente" target="_blank" rel="noopener noreferrer">
             Acompanhe a construção <span aria-hidden="true">↗</span>
           </a>
           <small>Este site é institucional e não realiza atendimento psicológico ou emergencial.</small>
