@@ -40,7 +40,7 @@ Não adicionar serviços ou dependências sem justificativa.
 
 ## Desenvolvimento local
 
-Requisitos: Node.js 22 ou superior e npm.
+Requisitos: Node.js 20 ou superior e npm.
 
 ```bash
 npm install
@@ -53,9 +53,10 @@ Verificações:
 npm run test
 npm run typecheck
 npm run build
+npm audit
 ```
 
-O GitHub Actions executa testes, typecheck e build em pull requests e atualizações da branch `main`.
+O GitHub Actions executa testes, typecheck e build em pull requests e atualizações da branch `main`. A auditoria de dependências também informa advisories e versões corrigidas em mudanças de dependências.
 
 ## Documentação
 
