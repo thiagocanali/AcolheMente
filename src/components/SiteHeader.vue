@@ -1,10 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
+
+const menuToggle = ref<HTMLButtonElement | null>(null)
 
 const menuOpen = ref(false)
 
 const closeMenu = () => {
   menuOpen.value = false
+}
+
+const closeMenuAndFocus = async () => {
+  closeMenu()
+  await nextTick()
+  menuToggle.value?.focus()
 }
 </script>
 
@@ -21,6 +29,7 @@ const closeMenu = () => {
     </a>
 
     <button
+      ref="menuToggle"
       class="menu-toggle"
       type="button"
       :aria-expanded="menuOpen"
@@ -36,7 +45,7 @@ const closeMenu = () => {
       class="main-nav"
       :class="{ 'is-open': menuOpen }"
       aria-label="Navegação principal"
-      @keydown.esc="closeMenu"
+      @keydown.esc="closeMenuAndFocus"
     >
       <a href="#proposito" @click="closeMenu">Nosso propósito</a>
       <a href="#como-funciona" @click="closeMenu">Como funciona</a>
