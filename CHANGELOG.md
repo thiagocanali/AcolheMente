@@ -3,6 +3,8 @@
 Mudanças relevantes do projeto serão registradas aqui.
 
 ## Unreleased
+- Atualiza Vitest, Vite e vue-tsc para versões corrigidas e remove Vue Test Utils, substituindo-o por montagem nativa do Vue nos testes para eliminar a cadeia vulnerável de js-beautify.
+- Mantém relatório de auditoria npm com detalhes dos advisories e artefato temporário do lockfile gerado para revisão.
 - Documenta proposta de campos administrativos mínimos, restrições explícitas a dados clínicos e critérios de acesso, retenção e descarte.
 - Registra decisão de não implementar persistência até validação profissional e de privacidade.
 - Adiciona workflow de auditoria de dependências npm em modo informativo para identificar pacotes, severidades e disponibilidade de correção.
