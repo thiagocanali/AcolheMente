@@ -17,7 +17,7 @@ const closeMenuAndFocus = async () => {
 </script>
 
 <template>
-  <header class="site-header">
+  <header class="site-header" @keydown.esc="closeMenuAndFocus">
     <a class="brand" href="#inicio" aria-label="AcolheMente, início" @click="closeMenu">
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 40 40" fill="none">
@@ -45,7 +45,6 @@ const closeMenuAndFocus = async () => {
       class="main-nav"
       :class="{ 'is-open': menuOpen }"
       aria-label="Navegação principal"
-      @keydown.esc="closeMenuAndFocus"
     >
       <a href="#proposito" @click="closeMenu">Nosso propósito</a>
       <a href="#como-funciona" @click="closeMenu">Como funciona</a>
