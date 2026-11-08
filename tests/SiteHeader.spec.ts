@@ -81,4 +81,19 @@ describe('SiteHeader', () => {
     expect(document.activeElement).toBe(button)
     wrapper.unmount()
   })
+
+  it('closes the navigation when Escape is pressed while the toggle has focus', async () => {
+    const wrapper = mountComponent(SiteHeader)
+    const buttonSelector = 'button[aria-controls="primary-navigation"]'
+    const button = wrapper.get<HTMLButtonElement>(buttonSelector)
+
+    await wrapper.click(buttonSelector)
+    button.focus()
+    await wrapper.keydown(buttonSelector, 'Escape')
+
+    expect(button.getAttribute('aria-expanded')).toBe('false')
+    expect(wrapper.get('nav').classList.contains('is-open')).toBe(false)
+    expect(document.activeElement).toBe(button)
+    wrapper.unmount()
+  })
 })
