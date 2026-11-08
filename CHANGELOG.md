@@ -3,6 +3,9 @@
 Mudanças relevantes do projeto serão registradas aqui.
 
 ## Unreleased
+- Atualiza as referências regulatórias e técnicas, incluindo CFP nº 9/2024, CFP nº 7/2025, Manual Orientativo do CFP (2025) e orientações atuais da ANPD sobre LGPD.
+- Reforça requisitos de acessibilidade, limites sobre registros psicológicos, análise de bases legais, papéis de tratamento e exclusão de crianças/adolescentes do MVP.
+- Reforça que consentimento não deve ser presumido como base legal universal e que o AcolheMente não substitui registros/documentos psicológicos profissionais.
 - Faz a CI falhar quando a auditoria npm encontra vulnerabilidades moderadas, altas ou críticas.
 - Atualiza Vitest, Vite e vue-tsc para versões corrigidas e remove Vue Test Utils, substituindo-o por montagem nativa do Vue nos testes para eliminar a cadeia vulnerável de js-beautify.
 - Mantém relatório de auditoria npm com detalhes dos advisories e artefato temporário do lockfile gerado para revisão.
