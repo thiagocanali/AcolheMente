@@ -50,11 +50,12 @@ npm run dev
 Verificações antes de enviar alterações:
 
 ```bash
+npm run test
 npm run typecheck
 npm run build
 ```
 
-O GitHub Actions executa o typecheck e o build em pull requests e em atualizações da branch `main`.
+O GitHub Actions executa os testes de componentes, o typecheck e o build em pull requests e em atualizações da branch `main`.
 
 ## Documentação
 
