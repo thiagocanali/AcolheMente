@@ -31,10 +31,10 @@ const closeMenu = () => {
         :aria-label="menuOpen ? 'Fechar menu' : 'Abrir menu'"
         @click="menuOpen = !menuOpen"
       >
-        <span></span><span></span>
+        <span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
 
-      <nav id="primary-navigation" class="main-nav" :class="{ 'is-open': menuOpen }" aria-label="Navegação principal">
+      <nav id="primary-navigation" class="main-nav" :class="{ 'is-open': menuOpen }" aria-label="Navegação principal" @keydown.esc="closeMenu">
         <a href="#proposito" @click="closeMenu">Nosso propósito</a>
         <a href="#como-funciona" @click="closeMenu">Como funciona</a>
         <a href="#cuidado" @click="closeMenu">Nosso cuidado</a>
