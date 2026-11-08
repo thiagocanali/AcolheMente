@@ -3,6 +3,7 @@
 Mudanças relevantes do projeto serão registradas aqui.
 
 ## Unreleased
+- Corrige o fechamento do menu móvel com Escape mesmo quando o foco está no próprio botão de alternância, e adiciona teste de regressão.
 - Ajusta tons de textos secundários, rótulos e metadados para melhorar o contraste com os fundos claros, preservando a identidade visual.
 - Torna o landmark principal focável para que o link "Pular para o conteúdo" funcione melhor com navegação por teclado e adiciona testes de acessibilidade da estrutura principal.
 - Atualiza o atributo rel do link externo para declarar explicitamente noopener.
