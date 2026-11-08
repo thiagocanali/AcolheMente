@@ -1,68 +1,68 @@
-# Modelo mínimo de dados administrativos — proposta
+# Modelo de dados administrativos
 
-## Status
-Proposta para revisão da psicóloga piloto e validação de privacidade antes de qualquer implementação. Este documento não autoriza coleta ou armazenamento de dados reais.
+> **Status: proposta técnica. Não é autorização para coletar dados reais.**
 
-## Objetivo e limite
-O único objetivo do fluxo é permitir que a profissional retorne um contato e organize uma solicitação administrativa. O sistema não deve registrar informações necessárias à condução clínica.
+## Objetivo
 
-## Campos candidatos
+Definir o menor conjunto possível de dados para contato administrativo e eventual solicitação de agendamento, sem transformar o MVP em sistema de prontuário ou coleta clínica.
 
-| Campo | Necessidade | Regra |
-|---|---|---|
-| Nome | Identificar a pessoa no retorno | Opcional quando o canal permitir; texto curto |
-| Canal de retorno | Responder à solicitação | Um único canal escolhido, com valor validado |
-| Preferência de modalidade | Ajudar a organizar o retorno | Opcional; apenas presencial/online/indiferente |
-| Preferência de período | Facilitar contato | Opcional; manhã/tarde/noite, sem agenda detalhada |
-| Status | Organizar o trabalho administrativo | Novo, em contato, concluído ou descartado |
-| Criado em / atualizado em | Operação e auditoria mínima | Timestamp gerado pelo servidor |
+## Dados candidatos
 
-Os campos finais dependem da validação da profissional. Não armazenar simultaneamente telefone e e-mail se um canal for suficiente.
+- nome (opcional, se realmente necessário);
+- um canal de contato;
+- preferência de modalidade: presencial, online ou indiferente;
+- preferência de período: manhã, tarde ou noite;
+- status interno;
+- timestamps técnicos estritamente necessários.
 
-## Dados proibidos no MVP
-- Motivo da consulta, sintomas, diagnóstico, hipótese diagnóstica ou histórico de saúde.
-- Relatos livres, mensagens clínicas, evolução, notas, documentos ou anexos.
-- Dados de crianças/adolescentes ou informações de seus responsáveis.
-- CPF, endereço residencial, dados financeiros ou documentos de identificação.
-- Campos livres, tags ou observações internas que possam virar registro clínico.
+Mesmo dados administrativos como nome e contato são dados pessoais e exigem finalidade, transparência e base legal apropriada. A base legal **não deve ser presumida como consentimento**: deve ser analisada conforme a finalidade e os arts. 7º e 11 da LGPD, quando aplicáveis.
 
-O formulário deve orientar a pessoa a não inserir informações de saúde. Não incluir campo de texto livre.
+## Não coletar no MVP
 
-## Acesso e autorização
-- Solicitações são privadas e visíveis somente à profissional autorizada.
-- A autorização deve ser verificada no servidor; esconder telas no frontend não é controle de acesso.
-- Se houver banco exposto ao cliente, todas as tabelas devem ter RLS habilitada e políticas negativas testadas.
-- Não criar contas públicas nem permitir autoinscrição de profissionais no MVP.
-- Logs técnicos não devem conter payloads, nomes, canais de contato ou IDs diretamente identificáveis.
+Não armazenar:
+- motivo clínico, sintomas, diagnóstico ou histórico de saúde;
+- narrativas clínicas ou campo de texto livre;
+- documentos ou anexos;
+- dados de crianças/adolescentes ou responsáveis;
+- CPF, endereço residencial ou documentos de identificação;
+- dados financeiros;
+- qualquer informação clínica desnecessária para o objetivo administrativo.
 
-## Retenção e descarte
-**Prazo ainda não definido — bloqueador para persistência e produção.**
+O formulário deve orientar explicitamente a pessoa a não inserir informações de saúde.
 
-Antes de ativar armazenamento, a profissional e a pessoa responsável por privacidade devem definir:
-1. finalidade e base legal para cada campo;
-2. prazo para solicitações novas, em contato, concluídas e descartadas;
-3. evento que inicia a contagem do prazo;
-4. rotina de exclusão e tratamento de backups;
-5. processo para atender pedidos de acesso, correção e eliminação;
-6. responsável pelo atendimento desses pedidos.
+## Crianças e adolescentes
 
-Não adotar um prazo arbitrário. Até a decisão ser registrada, usar apenas fluxo sem persistência ou canal externo aprovado pela profissional. Exclusão lógica isolada não equivale a descarte definitivo.
+O fluxo permanece desabilitado no MVP. Uma futura mudança de escopo exige análise específica do melhor interesse, bases legais aplicáveis e regras profissionais antes de qualquer coleta.
 
-## Segurança operacional
-- HTTPS e proteção contra abuso/spam.
-- Validação server-side, limites de tamanho e rate limiting.
-- Segredos somente em variáveis de ambiente.
-- Dados fictícios nos ambientes de desenvolvimento e homologação.
-- Nenhuma ferramenta de analytics, replay ou monitoramento pode receber dados do formulário.
-- Backups, acesso administrativo e resposta a incidentes precisam ser definidos antes de dados reais.
+## Acesso e segurança
 
-## Condições para implementação
-- [ ] Campos e finalidade aprovados pela profissional.
-- [ ] Aviso de privacidade revisado e publicado.
-- [ ] Base legal e papéis de controlador/operador avaliados.
-- [ ] Prazo de retenção e descarte definidos.
-- [ ] Autenticação e autorização server-side projetadas.
-- [ ] RLS e testes de acesso indevido definidos.
-- [ ] Processo de exclusão e incidentes documentado.
+Se a persistência for aprovada futuramente:
+- acesso somente a usuários autorizados;
+- autorização no servidor;
+- RLS/controle equivalente no banco;
+- nenhum cadastro administrativo público com acesso amplo;
+- logs sem PII desnecessária;
+- segredos fora do código-fonte;
+- transporte seguro;
+- política de retenção e descarte implementada.
 
-Este documento é uma proposta de engenharia, não um parecer jurídico nem uma declaração de conformidade com a LGPD ou normas do CFP/CRP.
+## Bloqueios antes da implementação
+
+Não implementar persistência até definir e aprovar:
+1. finalidade de cada campo;
+2. base legal aplicável;
+3. controlador, operador e fornecedores;
+4. aviso de privacidade;
+5. período de retenção por status/finalidade;
+6. evento que inicia a contagem da retenção;
+7. descarte também em backups;
+8. processo para direitos dos titulares;
+9. responsável por atender solicitações;
+10. resposta a incidentes.
+
+## Referências
+
+- [Referências regulatórias do projeto](./REGULATORY-REFERENCES.md)
+- [Privacidade e segurança](./PRIVACY-AND-SECURITY.md)
+
+> Este documento é uma proposta de engenharia e não afirma conformidade jurídica ou ética automática.

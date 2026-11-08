@@ -1,30 +1,65 @@
 # Privacidade e segurança
 
-## Princípio
-Privacidade desde a concepção. Informações relacionadas à saúde são dados pessoais sensíveis sob a LGPD. O produto deve evitar coletá-las sempre que não forem necessárias.
+## Princípios
 
-## Regras para o MVP
-- Não solicitar sintomas, diagnósticos, histórico, motivo clínico ou relato livre.
-- Informar finalidade, base legal aplicável, controlador, canal de contato, retenção e direitos de titulares antes da coleta.
-- Coletar apenas dados administrativos estritamente necessários.
-- Definir prazo de retenção e processo de exclusão antes do lançamento.
-- Restringir acesso por autenticação, menor privilégio e RLS.
-- Usar HTTPS, secrets em variáveis de ambiente e ambientes separados.
-- Não enviar dados pessoais a analytics, logs, ferramentas de replay ou trackers.
-- Preparar procedimento de incidentes e solicitações de titulares.
+AcolheMente deve aplicar minimização, finalidade, necessidade, transparência, segurança e privilégio mínimo desde o desenho do produto.
 
-## Antes de produção
-É necessária revisão específica do fluxo de dados, papéis de controlador/operador, contratos com fornecedores, bases legais, aviso de privacidade, cookies, retenção, direitos dos titulares e resposta a incidentes por profissional competente.
+Dados referentes à saúde são dados pessoais sensíveis. Nome, telefone e outros dados de contato também podem ser dados pessoais. O fato de um dado ser apenas administrativo não o torna livre de proteção pela LGPD.
 
-## Menores
-Não habilitar cadastro ou agendamento de crianças/adolescentes até definir e revisar consentimento, representação legal, melhor interesse, sigilo, acesso de responsáveis, retenção e deveres profissionais.
+## Limites do MVP
 
-## Segurança de aplicação
-- RLS em todas as tabelas expostas ao cliente.
-- Políticas testadas com usuários autorizados e não autorizados.
-- Proteção contra abuso e spam no formulário.
-- Validação server-side, limites de tamanho e rate limiting.
-- Sem segredos no frontend ou repositório.
-- Backups e recuperação documentados antes de armazenar dados operacionais reais.
+Não coletar nem armazenar:
+- sintomas;
+- diagnósticos;
+- histórico de saúde;
+- relatos clínicos;
+- prontuários ou registros psicológicos;
+- documentos clínicos;
+- texto livre para descrever sofrimento ou motivo clínico;
+- dados de crianças/adolescentes.
 
-Este documento é orientação de engenharia, não parecer jurídico.
+AcolheMente não substitui os registros/documentos psicológicos que possam ser de responsabilidade da profissional. Se o produto passar a armazená-los, haverá mudança de escopo e nova revisão de segurança, privacidade, retenção, acesso e conformidade.
+
+## Base legal
+
+Não assumir que consentimento seja a base legal de todo tratamento. Para dados pessoais em geral, a LGPD prevê hipóteses no art. 7º; para dados pessoais sensíveis, no art. 11. A hipótese aplicável deve ser definida conforme finalidade, categoria do dado e contexto.
+
+Antes da produção, documentar a análise de base legal para cada tratamento real.
+
+## Transparência e direitos
+
+Antes de qualquer coleta real, definir:
+- finalidade e necessidade de cada campo;
+- controlador, operador e fornecedores;
+- aviso de privacidade;
+- retenção e descarte;
+- canal para exercício de direitos;
+- procedimento de exclusão/correção quando aplicável;
+- resposta a incidentes.
+
+## Segurança técnica
+
+Quando houver persistência aprovada:
+- autenticação forte e autorização por menor privilégio;
+- RLS ou controle equivalente;
+- HTTPS/TLS;
+- segredos somente em mecanismos apropriados;
+- validação server-side;
+- logs sem PII desnecessária;
+- proteção contra acesso público indevido;
+- backups e descarte tratados na política de retenção.
+
+## Cookies, analytics e rastreamento
+
+O MVP não deve introduzir analytics, cookies não essenciais, pixels ou rastreadores sem decisão documentada de finalidade, necessidade, transparência e base legal.
+
+## Crianças e adolescentes
+
+O MVP não coleta dados de crianças/adolescentes. Se esse escopo mudar, será necessária revisão específica, inclusive quanto ao melhor interesse e às bases legais aplicáveis, sem presumir que consentimento parental seja a única hipótese jurídica.
+
+## Referências
+
+- [Referências regulatórias do projeto](./REGULATORY-REFERENCES.md)
+- [ANPD — Perguntas Frequentes](https://www.gov.br/anpd/pt-br/acesso-a-informacao/perguntas-frequentes)
+
+> Este documento orienta engenharia e produto. Não constitui parecer jurídico nem afirma conformidade automática.

@@ -68,6 +68,7 @@ O GitHub Actions executa testes, typecheck e build em pull requests e atualizaç
 - [Privacidade e segurança](docs/compliance/PRIVACY-AND-SECURITY.md)
 - [Modelo mínimo de dados administrativos](docs/compliance/ADMINISTRATIVE-DATA-MODEL.md)
 - [Ética e conformidade](docs/compliance/ETHICS-AND-COMPLIANCE.md)
+- [Referências regulatórias](docs/compliance/REGULATORY-REFERENCES.md)
 - [Decisões técnicas](docs/adr/README.md)
 
 ## Status
