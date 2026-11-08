@@ -69,7 +69,7 @@ O GitHub Actions executa o typecheck e o build em pull requests e em atualizaç�
 
 ## Status
 
-Fase atual: landing page institucional inicial implementada; próximo foco é validação de conteúdo com a profissional piloto e preparação do fluxo administrativo mínimo. Decisões clínicas, regulatórias e de tratamento de dados devem ser validadas com a psicóloga responsável e, quando necessário, assessoria especializada.
+Fase atual: landing page institucional com metadados básicos de SEO e compartilhamento; próximo foco é validação de conteúdo com a profissional piloto e preparação do fluxo administrativo mínimo. Decisões clínicas, regulatórias e de tratamento de dados devem ser validadas com a psicóloga responsável e, quando necessário, assessoria especializada.
 
 ## Licença
 
