@@ -33,12 +33,15 @@ describe('SiteHeader', () => {
     expect(wrapper.get('nav').classes()).not.toContain('is-open')
   })
 
-  it('closes the navigation when Escape is pressed inside it', async () => {
-    const wrapper = mount(SiteHeader)
+  it('closes the navigation when Escape is pressed inside it and restores focus', async () => {
+    const wrapper = mount(SiteHeader, { attachTo: document.body })
     await wrapper.get('button[aria-controls="primary-navigation"]').trigger('click')
     await wrapper.get('nav').trigger('keydown', { key: 'Escape' })
 
-    expect(wrapper.get('button').attributes('aria-expanded')).toBe('false')
+    const button = wrapper.get('button[aria-controls="primary-navigation"]')
+    expect(button.attributes('aria-expanded')).toBe('false')
     expect(wrapper.get('nav').classes()).not.toContain('is-open')
+    expect(document.activeElement).toBe(button.element)
+    wrapper.unmount()
   })
 })
