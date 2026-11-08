@@ -21,22 +21,22 @@ Começar com ferramentas simples que ajudem profissionais a apresentar seu traba
 
 O primeiro MVP prioriza:
 1. Página pública e institucional.
-2. Perfil profissional informativo.
+2. Perfil profissional informativo, somente com conteúdo aprovado pela profissional.
 3. Formulário administrativo mínimo para solicitar contato/agendamento.
-4. Área administrativa básica para gerenciar solicitações.
+4. Área administrativa protegida para gerenciar solicitações.
 5. Conteúdo claro sobre modalidade de atendimento, disponibilidade e canais de contato.
 
-**Fora do MVP:** prontuário, relatos clínicos, triagem ou diagnóstico automatizado, teleconsulta embutida, pagamentos e marketplace aberto.
+**Fora do MVP:** prontuário, relatos clínicos, triagem ou diagnóstico automatizado, teleconsulta embutida, pagamentos, marketplace aberto e fluxos para crianças/adolescentes.
 
-## Stack inicial proposta
+## Stack
 
 - Vue 3 + TypeScript + Vite.
 - CSS próprio com componentes acessíveis.
-- Supabase (PostgreSQL e Auth) quando houver necessidade real de persistência.
+- Supabase (PostgreSQL e Auth) somente após validação do fluxo, da retenção e da arquitetura de segurança.
 - Vercel para hospedagem.
 - Vitest e Playwright para testes.
 
-A arquitetura deve permanecer simples, modular e evolutiva. Não adicionar serviços ou dependências sem justificativa.
+Não adicionar serviços ou dependências sem justificativa.
 
 ## Desenvolvimento local
 
@@ -47,7 +47,7 @@ npm install
 npm run dev
 ```
 
-Verificações antes de enviar alterações:
+Verificações:
 
 ```bash
 npm run test
@@ -55,7 +55,7 @@ npm run typecheck
 npm run build
 ```
 
-O GitHub Actions executa os testes de componentes, o typecheck e o build em pull requests e em atualizações da branch `main`.
+O GitHub Actions executa testes, typecheck e build em pull requests e atualizações da branch `main`.
 
 ## Documentação
 
@@ -65,12 +65,15 @@ O GitHub Actions executa os testes de componentes, o typecheck e o build em pull
 - [Roadmap](docs/product/ROADMAP.md)
 - [Arquitetura](docs/engineering/ARCHITECTURE.md)
 - [Privacidade e segurança](docs/compliance/PRIVACY-AND-SECURITY.md)
+- [Modelo mínimo de dados administrativos](docs/compliance/ADMINISTRATIVE-DATA-MODEL.md)
 - [Ética e conformidade](docs/compliance/ETHICS-AND-COMPLIANCE.md)
 - [Decisões técnicas](docs/adr/README.md)
 
 ## Status
 
-Fase atual: landing page institucional com metadados básicos de SEO e compartilhamento; próximo foco é validação de conteúdo com a profissional piloto e preparação do fluxo administrativo mínimo. Decisões clínicas, regulatórias e de tratamento de dados devem ser validadas com a psicóloga responsável e, quando necessário, assessoria especializada.
+A landing page institucional está implementada. O fluxo administrativo ainda não está pronto para persistência: campos, base legal, aviso de privacidade, prazo de retenção, descarte e permissões precisam ser validados antes de receber dados reais. A documentação atual define uma proposta conservadora, não uma aprovação jurídica ou profissional.
+
+A publicação também depende da resolução do limite de builds da conta Vercel; conexão do repositório não significa que exista um deploy publicado.
 
 ## Licença
 
