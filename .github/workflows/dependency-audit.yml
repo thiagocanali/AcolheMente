@@ -25,6 +25,12 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install
+      - name: Preserve generated lockfile for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-package-lock
+          path: package-lock.json
+          if-no-files-found: error
       - name: Generate audit report
         run: npm audit --json > npm-audit.json || true
       - name: Summarize advisories
@@ -36,12 +42,16 @@ jobs:
           const summary = report.metadata?.vulnerabilities ?? {};
           console.log('Vulnerability totals:', JSON.stringify(summary));
           for (const [name, item] of Object.entries(report.vulnerabilities ?? {})) {
+            const advisories = (item.via ?? [])
+              .filter((entry) => typeof entry === 'object')
+              .map(({ title, url, range, severity }) => ({ title, url, range, severity }));
             console.log(JSON.stringify({
               package: name,
               severity: item.severity,
               direct: item.isDirect,
               range: item.range,
-              fixAvailable: item.fixAvailable
+              fixAvailable: item.fixAvailable,
+              advisories
             }));
           }
           NODE
