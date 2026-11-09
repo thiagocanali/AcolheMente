@@ -64,6 +64,7 @@ O GitHub Actions executa testes, typecheck e build em pull requests e atualizaç
 - [Escopo do MVP](docs/product/MVP.md)
 - [Personas e jornadas](docs/product/PERSONAS-AND-JOURNEYS.md)
 - [Roadmap](docs/product/ROADMAP.md)
+- [Checklist de revisão do perfil profissional](docs/product/PROFESSIONAL-PROFILE-REVIEW.md)
 - [Arquitetura](docs/engineering/ARCHITECTURE.md)
 - [Privacidade e segurança](docs/compliance/PRIVACY-AND-SECURITY.md)
 - [Modelo mínimo de dados administrativos](docs/compliance/ADMINISTRATIVE-DATA-MODEL.md)

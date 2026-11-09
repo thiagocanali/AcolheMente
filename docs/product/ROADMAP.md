@@ -11,7 +11,7 @@
 ## Fase 1 — Presença profissional
 - [x] Configurar Vue 3 + TypeScript + Vite e landing page institucional.
 - [x] Implementar componentes básicos acessíveis, SEO e testes do menu.
-- [ ] Validar e publicar perfil profissional somente após aprovação da profissional.
+- [ ] Validar e publicar perfil profissional somente após aprovação da profissional (seguir [checklist de revisão](./PROFESSIONAL-PROFILE-REVIEW.md)).
 - [ ] Revisão final de conteúdo e acessibilidade.
 
 ## Fase 2 — Solicitações administrativas
