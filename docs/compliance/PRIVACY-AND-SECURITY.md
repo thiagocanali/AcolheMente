@@ -49,6 +49,12 @@ Quando houver persistência aprovada:
 - proteção contra acesso público indevido;
 - backups e descarte tratados na política de retenção.
 
+## Recursos de terceiros e conexões externas
+
+A página institucional deve evitar requisições desnecessárias a terceiros. Fontes tipográficas são servidas pela pilha de fontes do próprio dispositivo; não carregamos Google Fonts nem outro provedor externo de fontes. Isso reduz a divulgação de metadados de conexão a terceiros durante a simples navegação.
+
+Links externos acionados pela pessoa visitante (por exemplo, o repositório público do projeto) continuam sujeitos às políticas do destino. Qualquer futura incorporação de vídeos, mapas, widgets, fontes ou scripts de terceiros exige avaliação prévia de finalidade, dados transmitidos, necessidade, transparência e impacto na privacidade.
+
 ## Cookies, analytics e rastreamento
 
 O MVP não deve introduzir analytics, cookies não essenciais, pixels ou rastreadores sem decisão documentada de finalidade, necessidade, transparência e base legal.
