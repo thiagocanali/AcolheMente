@@ -3,6 +3,7 @@
 Mudanças relevantes do projeto serão registradas aqui.
 
 ## Unreleased
+- Define gates verificáveis para conteúdo, fluxo administrativo, privacidade, segurança, homologação e piloto antes de qualquer persistência com dados reais.
 - Adiciona checklist para revisão e aprovação explícita do perfil profissional antes da publicação, sem presumir credenciais, serviços, disponibilidade ou promessas de resultado.
 - Remove o carregamento de fontes pelo Google Fonts e adota fontes do sistema, evitando uma requisição externa automática na visita à página institucional; documenta critérios para futuras integrações de terceiros.
 - Corrige o fechamento do menu móvel com Escape mesmo quando o foco está no próprio botão de alternância, e adiciona teste de regressão.
