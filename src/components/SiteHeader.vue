@@ -10,6 +10,8 @@ const closeMenu = () => {
 }
 
 const closeMenuAndFocus = async () => {
+  if (!menuOpen.value) return
+
   closeMenu()
   await nextTick()
   menuToggle.value?.focus()
