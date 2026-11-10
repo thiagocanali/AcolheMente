@@ -70,6 +70,19 @@ describe('SiteHeader', () => {
     wrapper.unmount()
   })
 
+  it('does not steal focus when Escape is pressed while the menu is already closed', async () => {
+    const wrapper = mountComponent(SiteHeader)
+    const brand = wrapper.get<HTMLAnchorElement>('a.brand')
+    const button = wrapper.get<HTMLButtonElement>('button[aria-controls="primary-navigation"]')
+
+    brand.focus()
+    await wrapper.keydown('a.brand', 'Escape')
+
+    expect(document.activeElement).toBe(brand)
+    expect(button.getAttribute('aria-expanded')).toBe('false')
+    wrapper.unmount()
+  })
+
   it('closes the navigation when Escape is pressed inside it and restores focus', async () => {
     const wrapper = mountComponent(SiteHeader)
     await wrapper.click('button[aria-controls="primary-navigation"]')
