@@ -16,6 +16,7 @@
 - [ ] Revisão final de conteúdo e acessibilidade.
 
 ## Fase 2 — Solicitações administrativas
+- [ ] Validar a [especificação proposta do ciclo de vida das solicitações](./ADMINISTRATIVE-REQUEST-LIFECYCLE.md) com a profissional e revisão de privacidade.
 - [ ] Fechar o modelo de dados com a profissional e revisão de privacidade.
 - [ ] Definir política de retenção, exclusão e backups.
 - [ ] Projetar autenticação individual, autorização server-side e RLS.
