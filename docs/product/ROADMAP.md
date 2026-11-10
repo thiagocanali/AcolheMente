@@ -12,6 +12,7 @@
 - [x] Configurar Vue 3 + TypeScript + Vite e landing page institucional.
 - [x] Implementar componentes básicos acessíveis, SEO e testes do menu.
 - [ ] Validar e publicar perfil profissional somente após aprovação da profissional (seguir [checklist de revisão](./PROFESSIONAL-PROFILE-REVIEW.md)).
+- [ ] Concluir os gates de validação antes de implementar persistência (seguir [gates do MVP](./MVP-VALIDATION-GATES.md)).
 - [ ] Revisão final de conteúdo e acessibilidade.
 
 ## Fase 2 — Solicitações administrativas
