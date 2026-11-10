@@ -29,6 +29,34 @@ describe('App accessibility landmarks', () => {
     wrapper.unmount()
   })
 
+  it('keeps every in-page navigation link connected to an existing section', () => {
+    const wrapper = mountComponent(App)
+    const links = [...wrapper.host.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')]
+
+    expect(links.length).toBeGreaterThan(0)
+    for (const link of links) {
+      const target = link.getAttribute('href')?.slice(1)
+      expect(target).toBeTruthy()
+      expect(wrapper.host.querySelector(`#${CSS.escape(target ?? '')}`)).not.toBeNull()
+      expect(link.textContent?.trim().length).toBeGreaterThan(0)
+    }
+    wrapper.unmount()
+  })
+
+  it('announces the external GitHub destination and its new-tab behavior', () => {
+    const wrapper = mountComponent(App)
+    const externalLink = wrapper.host.querySelector<HTMLAnchorElement>(
+      'a[href="https://github.com/thiagocanali/AcolheMente"]',
+    )
+
+    expect(externalLink?.getAttribute('aria-label')).toBe(
+      'Acompanhe a construção no GitHub (abre em nova aba)',
+    )
+    expect(externalLink?.getAttribute('target')).toBe('_blank')
+    expect(externalLink?.getAttribute('rel')).toContain('noopener')
+    wrapper.unmount()
+  })
+
   it('marks the decorative external-link icon as hidden from assistive technology', () => {
     const wrapper = mountComponent(App)
     const externalLink = wrapper.host.querySelector<HTMLAnchorElement>(
