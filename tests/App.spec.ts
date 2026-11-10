@@ -37,7 +37,7 @@ describe('App accessibility landmarks', () => {
     for (const link of links) {
       const target = link.getAttribute('href')?.slice(1)
       expect(target).toBeTruthy()
-      expect(wrapper.host.querySelector(`#${CSS.escape(target ?? '')}`)).not.toBeNull()
+      expect([...wrapper.host.querySelectorAll<HTMLElement>('[id]')].some((element) => element.id === target)).toBe(true)
       expect(link.textContent?.trim().length).toBeGreaterThan(0)
     }
     wrapper.unmount()
