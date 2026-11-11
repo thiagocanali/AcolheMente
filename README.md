@@ -53,10 +53,14 @@ Verificações:
 npm run test
 npm run typecheck
 npm run build
+npx playwright install chromium
+npm run test:e2e
 npm audit
 ```
 
-O GitHub Actions executa testes, typecheck e build em pull requests e atualizações da branch `main`. A auditoria de dependências também informa advisories e versões corrigidas em mudanças de dependências.
+`npm run test:e2e` gera o build e testa a página publicada localmente na porta 4173, que precisa estar livre. Os cenários verificam navegação por teclado, foco, layout e acessibilidade automática em Chromium, nos tamanhos desktop e celular. Em ambientes com Chromium já instalado, é possível indicar o caminho com `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:e2e`.
+
+O GitHub Actions executa testes de componentes, typecheck (incluindo testes e configurações), build e testes de navegador/acessibilidade em pull requests e atualizações da branch `main`. A auditoria de dependências também informa advisories e versões corrigidas em mudanças de dependências.
 
 ## Documentação
 
