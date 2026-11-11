@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build:
-    name: Typecheck and build
+    name: Typecheck, build and browser tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,3 +30,7 @@ jobs:
         run: npm run test
       - name: Typecheck and build
         run: npm run build
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Browser and accessibility tests
+        run: npx playwright test
