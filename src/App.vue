@@ -10,7 +10,7 @@ import SiteFooter from './components/SiteFooter.vue'
     <SiteHeader />
 
     <main id="conteudo" tabindex="-1">
-      <section id="inicio" class="hero section-wrap">
+      <section id="inicio" tabindex="-1" class="hero section-wrap">
         <div class="hero-copy">
           <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Um novo jeito de se aproximar do cuidado</div>
           <h1>Cuidar da mente também é <em>um ato de coragem.</em></h1>
@@ -45,7 +45,7 @@ import SiteFooter from './components/SiteFooter.vue'
         <div class="hero-bottom"><span>01 / 03</span><span class="hero-line"></span><span>ACOLHIMENTO · RESPEITO · CONEXÃO</span></div>
       </section>
 
-      <section id="proposito" class="purpose-section">
+      <section id="proposito" tabindex="-1" class="purpose-section">
         <div class="section-wrap purpose-grid">
           <div class="section-kicker">01 — Nosso propósito</div>
           <div class="purpose-content">
@@ -64,7 +64,7 @@ import SiteFooter from './components/SiteFooter.vue'
         </div>
       </section>
 
-      <section id="como-funciona" class="steps-section section-wrap">
+      <section id="como-funciona" tabindex="-1" class="steps-section section-wrap">
         <div class="section-kicker">02 — Como queremos ajudar</div>
         <div class="steps-heading">
           <h2>Um caminho mais claro para chegar ao <em>cuidado.</em></h2>
@@ -92,7 +92,7 @@ import SiteFooter from './components/SiteFooter.vue'
         </div>
       </section>
 
-      <section id="cuidado" class="care-section">
+      <section id="cuidado" tabindex="-1" class="care-section">
         <div class="section-wrap care-grid">
           <div class="care-art" aria-hidden="true">
             <div class="care-circle circle-large"></div>
@@ -118,7 +118,7 @@ import SiteFooter from './components/SiteFooter.vue'
         </div>
       </section>
 
-      <section id="novidades" class="closing-section section-wrap">
+      <section id="novidades" tabindex="-1" class="closing-section section-wrap">
         <div class="closing-card">
           <div class="closing-decoration" aria-hidden="true">✳</div>
           <div class="section-kicker">Estamos começando</div>

@@ -3,6 +3,9 @@
 Mudanças relevantes do projeto serão registradas aqui.
 
 ## Unreleased
+- Adiciona lockfile npm e instalação reproduzível com `npm ci` nos workflows.
+- Transfere o foco para a seção selecionada ao fechar o menu móvel, com teste de regressão.
+- Registra revisão técnica, verificações executadas e próximas tarefas em `docs/engineering/REVIEW-2026-11-11.md`.
 - Documenta uma proposta de estados e transições administrativas para solicitações, explicitamente pendente de validação profissional e de privacidade e sem autorizar persistência.
 - Define gates verificáveis para conteúdo, fluxo administrativo, privacidade, segurança, homologação e piloto antes de qualquer persistência com dados reais.
 - Adiciona checklist para revisão e aprovação explícita do perfil profissional antes da publicação, sem presumir credenciais, serviços, disponibilidade ou promessas de resultado.
