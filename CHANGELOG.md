@@ -3,6 +3,7 @@
 Mudanças relevantes do projeto serão registradas aqui.
 
 ## Unreleased
+- Define cabeçalhos HTTP para a página estática: CSP, proteção contra interpretação incorreta de MIME e enquadramento, política de referenciador e bloqueio de câmera/microfone/geolocalização. Decisão e limites no ADR 0003.
 - Adiciona lockfile npm e instalação reproduzível com `npm ci` nos workflows.
 - Transfere o foco para a seção selecionada ao fechar o menu móvel, com teste de regressão.
 - Registra revisão técnica, verificações executadas e próximas tarefas em `docs/engineering/REVIEW-2026-11-11.md`.
