@@ -55,6 +55,10 @@ A página institucional deve evitar requisições desnecessárias a terceiros. F
 
 Links externos acionados pela pessoa visitante (por exemplo, o repositório público do projeto) continuam sujeitos às políticas do destino. Qualquer futura incorporação de vídeos, mapas, widgets, fontes ou scripts de terceiros exige avaliação prévia de finalidade, dados transmitidos, necessidade, transparência e impacto na privacidade.
 
+## Cabeçalhos da página institucional
+
+O `vercel.json` configura CSP e cabeçalhos para restringir recursos ao próprio domínio, impedir incorporação em frames, omitir o referenciador e desabilitar câmera, microfone e geolocalização. A configuração vale no deploy da Vercel; o Vite local não a aplica automaticamente. Integrações futuras exigem revisão da política e testes no build conforme o [ADR 0003](../adr/0003-static-site-security-headers.md). Esses controles são complementares e não representam garantia integral de segurança.
+
 ## Cookies, analytics e rastreamento
 
 O MVP não deve introduzir analytics, cookies não essenciais, pixels ou rastreadores sem decisão documentada de finalidade, necessidade, transparência e base legal.
