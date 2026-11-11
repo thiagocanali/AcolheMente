@@ -1,4 +1,4 @@
-import { createApp, type Component } from 'vue'
+import { createApp, nextTick, type Component } from 'vue'
 import { describe, expect, it } from 'vitest'
 import App from '../src/App.vue'
 
@@ -41,6 +41,23 @@ describe('App accessibility landmarks', () => {
       expect(link.textContent?.trim().length).toBeGreaterThan(0)
     }
     wrapper.unmount()
+  })
+
+  it('moves focus out of the collapsed mobile navigation to the selected section', async () => {
+    const wrapper = mountComponent(App)
+    try {
+      const toggle = wrapper.host.querySelector<HTMLButtonElement>('.menu-toggle')!
+      toggle.click()
+      await nextTick()
+      const link = wrapper.host.querySelector<HTMLAnchorElement>('nav a[href="#cuidado"]')!
+      link.focus()
+      link.click()
+      await nextTick()
+      expect(toggle.getAttribute('aria-expanded')).toBe('false')
+      expect(document.activeElement).toBe(wrapper.host.querySelector('#cuidado'))
+    } finally {
+      wrapper.unmount()
+    }
   })
 
   it('announces the external GitHub destination and its new-tab behavior', () => {

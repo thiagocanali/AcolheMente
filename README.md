@@ -43,7 +43,7 @@ Não adicionar serviços ou dependências sem justificativa.
 Requisitos: Node.js 20.17+ ou 22.9+ e npm (a CI utiliza Node.js 22).
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -68,6 +68,7 @@ O GitHub Actions executa testes, typecheck e build em pull requests e atualizaç
 - [Gates de validação do MVP](docs/product/MVP-VALIDATION-GATES.md)
 - [Proposta de ciclo de vida das solicitações](docs/product/ADMINISTRATIVE-REQUEST-LIFECYCLE.md)
 - [Arquitetura](docs/engineering/ARCHITECTURE.md)
+- [Revisão técnica de 2026-11-11](docs/engineering/REVIEW-2026-11-11.md)
 - [Privacidade e segurança](docs/compliance/PRIVACY-AND-SECURITY.md)
 - [Modelo mínimo de dados administrativos](docs/compliance/ADMINISTRATIVE-DATA-MODEL.md)
 - [Ética e conformidade](docs/compliance/ETHICS-AND-COMPLIANCE.md)
@@ -78,7 +79,7 @@ O GitHub Actions executa testes, typecheck e build em pull requests e atualizaç
 
 A landing page institucional está implementada. O fluxo administrativo ainda não está pronto para persistência: campos, base legal, aviso de privacidade, prazo de retenção, descarte e permissões precisam ser validados antes de receber dados reais. A documentação atual define uma proposta conservadora, não uma aprovação jurídica ou profissional.
 
-A publicação também depende da resolução do limite de builds da conta Vercel; conexão do repositório não significa que exista um deploy publicado.
+Em 2026-11-11, a Vercel informa um deploy de produção com status `READY` para o commit `d3b3337`. Esse status confirma o build publicado, mas não substitui a validação dos fluxos no navegador.
 
 ## Licença
 
