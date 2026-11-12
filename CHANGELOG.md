@@ -3,6 +3,7 @@
 Mudanças relevantes do projeto serão registradas aqui.
 
 ## Unreleased
+- Corrige a auditoria de dependências para falhar em erros de consulta, relatórios inválidos e vulnerabilidades moderadas ou superiores; adiciona execução semanal e testes do validador.
 - Define cabeçalhos HTTP para a página estática: CSP, proteção contra interpretação incorreta de MIME e enquadramento, política de referenciador e bloqueio de câmera/microfone/geolocalização. Decisão e limites no ADR 0003.
 - Incorpora seis cenários de navegador com Playwright e axe à CI, cobrindo teclado, foco, menu móvel, layout e acessibilidade automática sobre o build.
 - Amplia o typecheck para testes de componentes, testes de navegador e configurações de teste.

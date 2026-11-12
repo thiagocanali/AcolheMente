@@ -72,6 +72,7 @@ O GitHub Actions executa testes de componentes, typecheck (incluindo testes e co
 - [Gates de validação do MVP](docs/product/MVP-VALIDATION-GATES.md)
 - [Proposta de ciclo de vida das solicitações](docs/product/ADMINISTRATIVE-REQUEST-LIFECYCLE.md)
 - [Arquitetura](docs/engineering/ARCHITECTURE.md)
+- [Auditoria contínua de dependências](docs/engineering/DEPENDENCY-AUDIT.md)
 - [Revisão técnica de 2026-11-11](docs/engineering/REVIEW-2026-11-11.md)
 - [Privacidade e segurança](docs/compliance/PRIVACY-AND-SECURITY.md)
 - [Modelo mínimo de dados administrativos](docs/compliance/ADMINISTRATIVE-DATA-MODEL.md)

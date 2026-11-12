@@ -7,6 +7,10 @@ on:
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/dependency-audit.yml"
+      - "scripts/report-audit.mjs"
+      - "tests/audit-report.test.mjs"
+  schedule:
+    - cron: "17 12 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -16,6 +20,7 @@ jobs:
   audit:
     name: Report dependency advisories
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,39 +32,24 @@ jobs:
         run: npm install --global npm@11.6.2
       - name: Install dependencies
         run: npm ci
-      - name: Preserve generated lockfile for review
+      - name: Preserve committed lockfile for review
         uses: actions/upload-artifact@v4
         with:
-          name: generated-package-lock
+          name: audited-package-lock
           path: package-lock.json
           if-no-files-found: error
       - name: Generate audit report
-        run: npm audit --json > npm-audit.json || true
+        id: audit
+        continue-on-error: true
+        run: npm audit --audit-level=moderate --json > npm-audit.json
       - name: Preserve audit report for review
         uses: actions/upload-artifact@v4
         with:
           name: npm-audit-report
           path: npm-audit.json
           if-no-files-found: error
-      - name: Summarize advisories
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-
-          const report = JSON.parse(fs.readFileSync('npm-audit.json', 'utf8'));
-          const summary = report.metadata?.vulnerabilities ?? {};
-          console.log('Vulnerability totals:', JSON.stringify(summary));
-          for (const [name, item] of Object.entries(report.vulnerabilities ?? {})) {
-            const advisories = (item.via ?? [])
-              .filter((entry) => typeof entry === 'object')
-              .map(({ title, url, range, severity }) => ({ title, url, range, severity }));
-            console.log(JSON.stringify({
-              package: name,
-              severity: item.severity,
-              direct: item.isDirect,
-              range: item.range,
-              fixAvailable: item.fixAvailable,
-              advisories
-            }));
-          }
-          NODE
+      - name: Validate and summarize audit report
+        run: node scripts/report-audit.mjs npm-audit.json
+      - name: Enforce npm audit exit status
+        if: steps.audit.outcome != 'success'
+        run: exit 1
