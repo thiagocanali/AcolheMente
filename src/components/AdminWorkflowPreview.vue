@@ -111,4 +111,16 @@ function reset() {
 .admin-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .admin-empty, .admin-note { padding: 20px; background: #e7eee4; border-radius: 12px; }
 .admin-note { margin-top: 32px; line-height: 1.7; }
+@media (max-width: 480px) {
+  .admin-main { padding-top: 36px; }
+  .admin-controls { align-items: stretch; flex-direction: column; }
+  .admin-controls select, .admin-controls button { width: 100%; min-height: 44px; }
+  .admin-card { padding: 16px; }
+  .admin-actions { width: 100%; flex-direction: column; }
+  .admin-actions button { width: 100%; min-height: 44px; text-align: left; }
+  .admin-card strong, .admin-status { overflow-wrap: anywhere; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .admin-preview * { scroll-behavior: auto; }
+}
 </style>
