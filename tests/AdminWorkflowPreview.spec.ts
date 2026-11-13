@@ -53,4 +53,33 @@ describe('local-only administrative preview', () => {
       expect(view.host.querySelector('.admin-card')?.textContent).toContain('Recebida')
     } finally { view.cleanup() }
   })
+  it('provides accessible landmarks, labels and a live status message', async () => {
+    const view = mount()
+    try {
+      const main = view.host.querySelector('main#painel')
+      expect(main?.getAttribute('tabindex')).toBe('-1')
+      expect(view.host.querySelector('a.skip-link')?.getAttribute('href')).toBe('#painel')
+      expect(view.host.querySelector('label[for="status-filter"]')).not.toBeNull()
+      expect(view.host.querySelector('select#status-filter')).not.toBeNull()
+      const status = view.host.querySelector('[role="status"]')
+      expect(status?.getAttribute('aria-live')).toBe('polite')
+      const first = view.host.querySelector('.admin-card')!
+      const next = [...first.querySelectorAll('button')].find(button => button.textContent?.includes('em análise'))!
+      next.click()
+      await nextTick()
+      expect(status?.textContent).toContain('Estado atualizado')
+      expect(first.textContent).toContain('Em análise')
+    } finally { view.cleanup() }
+  })
+
+  it('keeps controls as native keyboard-accessible elements', () => {
+    const view = mount()
+    try {
+      expect(view.host.querySelectorAll('.admin-actions button[type="button"]').length).toBeGreaterThan(0)
+      expect(view.host.querySelectorAll('button:not([type="button"])')).toHaveLength(0)
+      expect(view.host.querySelectorAll('[tabindex="-1"]')).toHaveLength(1)
+      expect(view.host.querySelectorAll('[onclick], [onkeydown]')).toHaveLength(0)
+    } finally { view.cleanup() }
+  })
+
 })
