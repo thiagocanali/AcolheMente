@@ -64,7 +64,7 @@ describe('local-only administrative preview', () => {
       const status = view.host.querySelector('[role="status"]')
       expect(status?.getAttribute('aria-live')).toBe('polite')
       const first = view.host.querySelector('.admin-card')!
-      const next = [...first.querySelectorAll('button')].find(button => button.textContent?.includes('Em análise'))!
+      const next = [...first.querySelectorAll('button')].find(button => button.textContent?.includes('em análise'))!
       next.click()
       await nextTick()
       expect(status?.textContent).toContain('Estado atualizado')
