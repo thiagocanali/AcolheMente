@@ -85,7 +85,7 @@ describe('local-only administrative preview', () => {
   it('restores all demo records and clears an active filter on reset', async () => {
     const view = mount()
     try {
-      const select = view.host.querySelector('select#status-filter')!
+      const select = view.host.querySelector<HTMLSelectElement>('select#status-filter')!
       select.value = 'closed'
       select.dispatchEvent(new Event('change', { bubbles: true }))
       await nextTick()
