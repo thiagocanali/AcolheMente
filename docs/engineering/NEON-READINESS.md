@@ -65,3 +65,11 @@ Cinco especificações versionadas na PR #38, ainda **não** implementadas como 
 ## Regressão de prévias locais
 
 A verificação automatizada `tests/infrastructure-boundaries.test.mjs` também exige que as prévias fictícias de administração e perfil permaneçam protegidas por `import.meta.env.DEV`. Esse teste é uma barreira de regressão estática, **não** substitui teste de autenticação ou autorização server-side quando houver backend. Commit de implementação: `604873c`; CI do commit deve ser verificada antes de marcar como validada.
+
+## Auditoria de continuidade — 2026-11-15
+
+- PRs #32–#38 consultadas: todas abertas; CI do HEAD consultado anteriormente aprovada nas PRs #32–#37. PR #38 também tinha CI aprovada no HEAD anterior `985e932`; novas alterações desta rodada aguardam workflow próprio.
+- Sobreposição confirmada: #32/#33/#34 alteram testes administrativos; #35/#36 alteram o mesmo teste E2E. Não integrar em lote cego; revalidar após cada integração.
+- Busca de issues abertas não encontrou itens. Não há autorização para merge/deploy nesta etapa.
+- Teste de fronteira ampliado para rejeitar nomes comuns de variáveis sensíveis sob prefixo `VITE_` (DATABASE, SECRET, TOKEN, PASSWORD, PRIVATE_KEY, API_KEY, CREDENTIAL, CONNECTION_STRING, SERVICE_ROLE e JWT).
+- Commit de ampliação: `799cbab`; correção da expressão regular: `3da3a81`. A CI do novo HEAD deve ser consultada; ausência de run ainda não é aprovação.
