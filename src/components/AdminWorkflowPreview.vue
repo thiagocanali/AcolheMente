@@ -48,6 +48,7 @@ function reset() {
     { id: 'DEMO-002', status: 'reviewing' },
     { id: 'DEMO-003', status: 'contacted' },
   ]
+  filter.value = 'all'
   message.value = 'Dados fictícios restaurados.'
 }
 </script>
