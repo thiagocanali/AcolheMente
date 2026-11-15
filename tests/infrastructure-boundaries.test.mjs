@@ -22,7 +22,7 @@ test('browser source never references database credentials or Supabase runtime',
       } else if (/\.(vue|ts|tsx|js|jsx)$/.test(name)) {
         const code = readFileSync(path, 'utf8')
         assert.doesNotMatch(code, /@supabase\/|supabase\.auth|supabase\.from\s*\(/i, `Supabase client usage in ${path}`)
-        assert.doesNotMatch(code, /import\\.meta\\.env\\.VITE_[A-Z0-9_]*(?:DATABASE|SECRET|TOKEN|PASSWORD|PRIVATE_KEY|API_KEY|CREDENTIAL|CONNECTION_STRING|SERVICE_ROLE|JWT)/, `Secret exposed to Vite in ${path}`)
+        assert.doesNotMatch(code, /import\.meta\.env\.VITE_[A-Z0-9_]*(?:DATABASE|SECRET|TOKEN|PASSWORD|PRIVATE_KEY|API_KEY|CREDENTIAL|CONNECTION_STRING|SERVICE_ROLE|JWT)/, `Secret exposed to Vite in ${path}`)
       }
     }
   }
