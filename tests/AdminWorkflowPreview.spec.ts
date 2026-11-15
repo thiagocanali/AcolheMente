@@ -82,4 +82,44 @@ describe('local-only administrative preview', () => {
     } finally { view.cleanup() }
   })
 
+  it('provides a working skip link target and focusable native controls', () => {
+    const view = mount()
+    try {
+      const skip = view.host.querySelector<HTMLAnchorElement>('a.skip-link')!
+      const target = view.host.querySelector<HTMLElement>(skip.getAttribute('href')!)!
+      expect(target).not.toBeNull()
+      expect(target.tagName).toBe('MAIN')
+      expect(target.tabIndex).toBe(-1)
+
+      const filter = view.host.querySelector<HTMLSelectElement>('#status-filter')!
+      filter.focus()
+      expect(document.activeElement).toBe(filter)
+
+      const reset = [...view.host.querySelectorAll<HTMLButtonElement>('button')].find(
+        button => button.textContent?.includes('Restaurar'),
+      )!
+      reset.focus()
+      expect(document.activeElement).toBe(reset)
+      expect(reset.disabled).toBe(false)
+    } finally { view.cleanup() }
+  })
+
+  it('announces empty results and returns to the full list when filtering', async () => {
+    const view = mount()
+    try {
+      const filter = view.host.querySelector<HTMLSelectElement>('#status-filter')!
+      filter.value = 'closed'
+      filter.dispatchEvent(new Event('change', { bubbles: true }))
+      await nextTick()
+      expect(view.host.querySelector('.admin-empty')?.textContent).toContain('Nenhuma solicitação')
+      expect(view.host.querySelectorAll('.admin-card')).toHaveLength(0)
+
+      filter.value = 'all'
+      filter.dispatchEvent(new Event('change', { bubbles: true }))
+      await nextTick()
+      expect(view.host.querySelector('.admin-empty')).toBeNull()
+      expect(view.host.querySelectorAll('.admin-card')).toHaveLength(3)
+    } finally { view.cleanup() }
+  })
+
 })
