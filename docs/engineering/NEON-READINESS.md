@@ -50,3 +50,14 @@ Não criar banco, tabelas de pacientes, cadastro, API ou coleta real apenas por 
 | P2 | Homologar piloto e ativar coleta real | Bloqueada externamente | Gate 6 e autorização operacional explícita |
 
 A PR #32 contém uma fila de trabalho geral ainda não integrada; este quadro registra somente o escopo de Neon e não a substitui.
+
+## Entregas de preparação do ciclo (2026-11-15)
+
+Cinco especificações versionadas na PR #38, ainda **não** implementadas como backend:
+- [Checklist de segurança e autorização](./NEON-SECURITY-CHECKLIST.md)
+- [Contrato de variáveis de ambiente](./NEON-ENVIRONMENT-CONTRACT.md)
+- [Matriz de aceite e testes](./NEON-ACCEPTANCE-MATRIX.md)
+- [Plano preliminar de rollback](./NEON-ROLLBACK-PLAN.md)
+- [Decisões técnicas pendentes do Gate 4](./NEON-GATE-4-DECISIONS.md)
+
+**Próximas cinco tarefas por prioridade:** (1) validar CI no HEAD desta atualização; (2) revisar conflitos e dependências das PRs #32–#38; (3) verificar referências residuais a Supabase em documentação e testes; (4) preparar testes automatizados de regras de fronteira sem banco real; (5) obter aprovação dos Gates 1–3 antes de ativar Auth/API/Neon. Nenhuma aprovação de gates é presumida.
