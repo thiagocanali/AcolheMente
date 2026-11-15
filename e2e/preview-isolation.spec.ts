@@ -23,4 +23,19 @@ test.describe('production preview isolation', () => {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)
     expect(overflow).toBe(false)
   })
+  test('keeps production landing accessible at 320px with preview parameters', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 640 })
+    for (const url of ['/', '/?preview=admin', '/?preview=profile']) {
+      await page.goto(url)
+      await expect(page.locator('main#conteudo')).toBeVisible()
+      await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+      await expect(page.locator('.admin-preview')).toHaveCount(0)
+      const dimensions = await page.evaluate(() => ({
+        viewport: document.documentElement.clientWidth,
+        content: document.documentElement.scrollWidth,
+      }))
+      expect(dimensions.content).toBeLessThanOrEqual(dimensions.viewport)
+    }
+  })
+
 })
