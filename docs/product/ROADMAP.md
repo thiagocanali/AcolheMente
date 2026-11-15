@@ -20,7 +20,7 @@
 - [ ] Fechar o modelo de dados com a profissional e revisão de privacidade.
 - [ ] Definir política de retenção, exclusão e backups.
 - [ ] Projetar autenticação individual, autorização server-side e RLS.
-- [ ] Configurar Supabase Auth e banco somente após aprovação das etapas anteriores.
+- [ ] Definir autenticação independente (avaliar Better Auth) e preparar Neon PostgreSQL somente após aprovação das etapas anteriores e do Gate 4 ([ADR 0004](../adr/0004-neon-postgres-target.md)).
 - [ ] Implementar formulário sem campo clínico livre e painel protegido.
 - [ ] Testar acesso permitido/negado, exclusão, abuso e ausência de dados pessoais em logs.
 
