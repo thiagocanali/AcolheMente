@@ -41,8 +41,8 @@ Não criar banco, tabelas de pacientes, cadastro, API ou coleta real apenas por 
 
 | Prioridade | Tarefa | Estado | Evidência / dependência |
 | --- | --- | --- | --- |
-| P1 | Remover direcionamento futuro ao Supabase em README, arquitetura, roadmap e instruções de agentes | Validada na branch; aguardando merge | PR #38; CI #85 aprovada no HEAD `dfa09a9` |
-| P1 | Registrar a decisão arquitetural Neon e os limites do MVP | Validada na branch; aguardando merge | ADR 0004, PR #38; CI #85 aprovada |
+| P1 | Remover direcionamento futuro ao Supabase em README, arquitetura, roadmap e instruções de agentes | Validada na branch; aguardando merge | PR #38; CI #86 aprovada no HEAD `a06e386` |
+| P1 | Registrar a decisão arquitetural Neon e os limites do MVP | Validada na branch; aguardando merge | ADR 0004, PR #38; CI #86 aprovada |
 | P1 | Aprovar finalidade, campos, retenção e conteúdo profissional | Bloqueada externamente | Gates 1–3 pendentes |
 | P1 | Definir API, Auth e isolamento PostgreSQL com critérios verificáveis | Pendente, depende dos Gates 1–3 | Gate 4 |
 | P1 | Provisionar banco Neon, migrations e autenticação | Bloqueada | Gate 4; nenhuma credencial deve ser criada antecipadamente |
@@ -61,3 +61,7 @@ Cinco especificações versionadas na PR #38, ainda **não** implementadas como 
 - [Decisões técnicas pendentes do Gate 4](./NEON-GATE-4-DECISIONS.md)
 
 **Próximas cinco tarefas por prioridade:** (1) validar CI no HEAD desta atualização; (2) revisar conflitos e dependências das PRs #32–#38; (3) verificar referências residuais a Supabase em documentação e testes; (4) preparar testes automatizados de regras de fronteira sem banco real; (5) obter aprovação dos Gates 1–3 antes de ativar Auth/API/Neon. Nenhuma aprovação de gates é presumida.
+
+## Regressão de prévias locais
+
+A verificação automatizada `tests/infrastructure-boundaries.test.mjs` também exige que as prévias fictícias de administração e perfil permaneçam protegidas por `import.meta.env.DEV`. Esse teste é uma barreira de regressão estática, **não** substitui teste de autenticação ou autorização server-side quando houver backend. Commit de implementação: `604873c`; CI do commit deve ser verificada antes de marcar como validada.
