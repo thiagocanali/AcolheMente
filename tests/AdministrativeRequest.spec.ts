@@ -49,4 +49,33 @@ describe('proposed administrative request lifecycle (no persistence)', () => {
       ok: false, reason: 'invalid_transition',
     })
   })
+  it('rejects untrusted runtime values without exceptions or leaked payloads', () => {
+    const untrusted: unknown[] = [
+      undefined, null, '', 0, 1, false, true, [], {}, 'RECEIVED',
+      '__proto__', 'constructor', 'toString',
+      { status: 'received' }, 'private-contact@example.invalid',
+    ]
+    for (const value of untrusted) {
+      expect(isRequestStatus(value)).toBe(false)
+      expect(canTransition(value, 'closed')).toBe(false)
+      expect(canTransition('received', value)).toBe(false)
+      expect(transitionRequest(value, 'closed')).toEqual({
+        ok: false, reason: 'invalid_status',
+      })
+      expect(transitionRequest('received', value)).toEqual({
+        ok: false, reason: 'invalid_status',
+      })
+    }
+  })
+
+  it('does not accept repeated transitions, including terminal closure', () => {
+    for (const status of requestStatuses) {
+      expect(canTransition(status, status)).toBe(false)
+      expect(transitionRequest(status, status)).toEqual({
+        ok: false, reason: 'invalid_transition',
+      })
+    }
+    expect(requestStatuses.filter(status => canTransition('closed', status))).toEqual([])
+  })
+
 })
