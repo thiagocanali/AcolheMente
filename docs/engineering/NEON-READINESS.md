@@ -41,8 +41,8 @@ Não criar banco, tabelas de pacientes, cadastro, API ou coleta real apenas por 
 
 | Prioridade | Tarefa | Estado | Evidência / dependência |
 | --- | --- | --- | --- |
-| P1 | Remover direcionamento futuro ao Supabase em README, arquitetura e instruções de agentes | Implementada, aguardando CI e merge | PR #38; alterações versionadas |
-| P1 | Registrar a decisão arquitetural Neon e os limites do MVP | Implementada, aguardando CI e merge | ADR 0004, PR #38 |
+| P1 | Remover direcionamento futuro ao Supabase em README, arquitetura, roadmap e instruções de agentes | Validada na branch; aguardando merge | PR #38; CI #85 aprovada no HEAD `dfa09a9` |
+| P1 | Registrar a decisão arquitetural Neon e os limites do MVP | Validada na branch; aguardando merge | ADR 0004, PR #38; CI #85 aprovada |
 | P1 | Aprovar finalidade, campos, retenção e conteúdo profissional | Bloqueada externamente | Gates 1–3 pendentes |
 | P1 | Definir API, Auth e isolamento PostgreSQL com critérios verificáveis | Pendente, depende dos Gates 1–3 | Gate 4 |
 | P1 | Provisionar banco Neon, migrations e autenticação | Bloqueada | Gate 4; nenhuma credencial deve ser criada antecipadamente |
