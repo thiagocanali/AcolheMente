@@ -16,7 +16,8 @@ export function isRequestStatus(value: unknown): value is RequestStatus {
   return typeof value === 'string' && requestStatuses.some(status => status === value)
 }
 
-export function canTransition(from: RequestStatus, to: RequestStatus): boolean {
+export function canTransition(from: unknown, to: unknown): boolean {
+  if (!isRequestStatus(from) || !isRequestStatus(to)) return false
   return allowedTransitions[from].includes(to)
 }
 
