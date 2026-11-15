@@ -23,4 +23,21 @@ test.describe('production preview isolation', () => {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)
     expect(overflow).toBe(false)
   })
+  test('does not expose development views through query-string variants', async ({ page }) => {
+    const variants = [
+      '/?preview=admin&preview=profile',
+      '/?preview=profile&preview=admin',
+      '/?preview=%61dmin',
+      '/?PREVIEW=admin',
+      '/?preview=admin#painel',
+      '/?preview=admin%00',
+    ]
+    for (const url of variants) {
+      await page.goto(url)
+      await expect(page.locator('main#conteudo')).toBeVisible()
+      await expect(page.locator('.admin-preview, .profile-preview')).toHaveCount(0)
+      await expect(page.locator('body')).not.toContainText('DEMO-001')
+    }
+  })
+
 })
