@@ -28,3 +28,11 @@ test('browser source never references database credentials or Supabase runtime',
   }
   walk(sourceDir)
 })
+
+
+test('fictional admin and profile previews remain development-only', () => {
+  const entry = readFileSync(new URL('../src/main.ts', import.meta.url), 'utf8')
+  assert.match(entry, /import\.meta\.env\.DEV\s*\?\s*new URLSearchParams\(window\.location\.search\)\.get\(['"]preview['"]\)\s*:\s*null/)
+  assert.match(entry, /preview === ['"]admin['"]/, 'Admin preview should be explicit')
+  assert.match(entry, /preview === ['"]profile['"]/, 'Profile preview should be explicit')
+})
