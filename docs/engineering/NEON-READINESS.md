@@ -36,3 +36,17 @@
 6. Gates 5–6: homologação e piloto controlado, com autorização específica.
 
 Não criar banco, tabelas de pacientes, cadastro, API ou coleta real apenas por decisão de padronização. A política de migração não substitui os gates de proteção de dados. A aplicação pública atual deve permanecer disponível e sem mudanças de infraestrutura de produção.
+
+## Fila de execução e evidências
+
+| Prioridade | Tarefa | Estado | Evidência / dependência |
+| --- | --- | --- | --- |
+| P1 | Remover direcionamento futuro ao Supabase em README, arquitetura e instruções de agentes | Implementada, aguardando CI e merge | PR #38; alterações versionadas |
+| P1 | Registrar a decisão arquitetural Neon e os limites do MVP | Implementada, aguardando CI e merge | ADR 0004, PR #38 |
+| P1 | Aprovar finalidade, campos, retenção e conteúdo profissional | Bloqueada externamente | Gates 1–3 pendentes |
+| P1 | Definir API, Auth e isolamento PostgreSQL com critérios verificáveis | Pendente, depende dos Gates 1–3 | Gate 4 |
+| P1 | Provisionar banco Neon, migrations e autenticação | Bloqueada | Gate 4; nenhuma credencial deve ser criada antecipadamente |
+| P2 | Testar isolamento, restauração e fluxo completo em homologação fictícia | Bloqueada | API, Auth, banco e Gate 5 |
+| P2 | Homologar piloto e ativar coleta real | Bloqueada externamente | Gate 6 e autorização operacional explícita |
+
+A PR #32 contém uma fila de trabalho geral ainda não integrada; este quadro registra somente o escopo de Neon e não a substitui.
