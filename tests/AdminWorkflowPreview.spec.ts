@@ -82,4 +82,37 @@ describe('local-only administrative preview', () => {
     } finally { view.cleanup() }
   })
 
+  it('restores all demo records and clears an active filter on reset', async () => {
+    const view = mount()
+    try {
+      const select = view.host.querySelector('select#status-filter')!
+      select.value = 'closed'
+      select.dispatchEvent(new Event('change', { bubbles: true }))
+      await nextTick()
+      expect(view.host.querySelectorAll('.admin-card')).toHaveLength(0)
+      const reset = [...view.host.querySelectorAll('button')].find(button => button.textContent?.includes('Restaurar'))!
+      reset.click()
+      await nextTick()
+      expect(select.value).toBe('all')
+      expect(view.host.querySelectorAll('.admin-card')).toHaveLength(3)
+      expect(view.host.querySelector('[role="status"]')?.textContent).toContain('restaurados')
+    } finally { view.cleanup() }
+  })
+
+  it('keeps the other fictional records unchanged after a transition', async () => {
+    const view = mount()
+    try {
+      const cards = view.host.querySelectorAll('.admin-card')
+      const initialSecond = cards[1].textContent
+      const initialThird = cards[2].textContent
+      const next = [...cards[0].querySelectorAll('button')].find(button => button.textContent?.includes('em análise'))!
+      next.click()
+      await nextTick()
+      const updated = view.host.querySelectorAll('.admin-card')
+      expect(updated[0].textContent).toContain('Em análise')
+      expect(updated[1].textContent).toBe(initialSecond)
+      expect(updated[2].textContent).toBe(initialThird)
+    } finally { view.cleanup() }
+  })
+
 })
