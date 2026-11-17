@@ -73,6 +73,7 @@ O GitHub Actions executa testes de componentes, typecheck (incluindo testes e co
 - [Proposta de ciclo de vida das solicitações](docs/product/ADMINISTRATIVE-REQUEST-LIFECYCLE.md)
 - [Prévia local do painel administrativo](docs/engineering/LOCAL-ADMIN-PREVIEW.md)
 - [Modelo de ameaças do futuro painel](docs/security/ADMIN-THREAT-MODEL.md)
+- [Plano de homologação administrativa](docs/quality/ADMIN-HOMOLOGATION-PLAN.md)
 - [Arquitetura](docs/engineering/ARCHITECTURE.md)
 - [Auditoria contínua de dependências](docs/engineering/DEPENDENCY-AUDIT.md)
 - [Revisão técnica de 2026-11-11](docs/engineering/REVIEW-2026-11-11.md)
