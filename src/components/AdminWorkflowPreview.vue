@@ -72,7 +72,7 @@ function reset() {
         <button type="button" @click="reset">Restaurar demonstração</button>
       </div>
       <p role="status" aria-live="polite">{{ message }}</p>
-      <p v-if="visible.length === 0" class="admin-empty">Nenhuma solicitação fictícia neste filtro.</p>
+      <p v-if="visible.length === 0" class="admin-empty" role="status" aria-live="polite">Nenhuma solicitação fictícia neste filtro.</p>
       <ul v-else class="admin-list" aria-label="Solicitações fictícias">
         <li v-for="item in visible" :key="item.id" class="admin-card">
           <div><strong>{{ item.id }}</strong><span class="admin-status">{{ labels[item.status] }}</span></div>
