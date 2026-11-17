@@ -82,4 +82,52 @@ describe('local-only administrative preview', () => {
     } finally { view.cleanup() }
   })
 
+  it('does not persist status changes after unmounting and remounting', async () => {
+    const firstMount = mount()
+    try {
+      const first = firstMount.host.querySelector('.admin-card')!
+      const close = [...first.querySelectorAll('button')].find(button => button.textContent?.includes('encerrada'))!
+      close.click()
+      await nextTick()
+      expect(firstMount.host.querySelector('.admin-card')?.textContent).toContain('Encerrada')
+    } finally { firstMount.cleanup() }
+
+    const secondMount = mount()
+    try {
+      const cards = [...secondMount.host.querySelectorAll('.admin-card')]
+      expect(cards).toHaveLength(3)
+      expect(cards[0].textContent).toContain('DEMO-001')
+      expect(cards[0].textContent).toContain('Recebida')
+      expect(cards[0].textContent).not.toContain('Encerrada')
+    } finally { secondMount.cleanup() }
+  })
+
+  it('filters by every proposed status without changing the underlying records', async () => {
+    const view = mount()
+    try {
+      const select = view.host.querySelector('select')!
+      for (const [status, expected] of [
+        ['received', 'DEMO-001'],
+        ['reviewing', 'DEMO-002'],
+        ['contacted', 'DEMO-003'],
+      ] as const) {
+        select.value = status
+        select.dispatchEvent(new Event('change', { bubbles: true }))
+        await nextTick()
+        const cards = [...view.host.querySelectorAll('.admin-card')]
+        expect(cards).toHaveLength(1)
+        expect(cards[0].textContent).toContain(expected)
+      }
+      select.value = 'closed'
+      select.dispatchEvent(new Event('change', { bubbles: true }))
+      await nextTick()
+      expect(view.host.querySelectorAll('.admin-card')).toHaveLength(0)
+      expect(view.host.textContent).toContain('Nenhuma solicitação fictícia')
+      select.value = 'all'
+      select.dispatchEvent(new Event('change', { bubbles: true }))
+      await nextTick()
+      expect(view.host.querySelectorAll('.admin-card')).toHaveLength(3)
+    } finally { view.cleanup() }
+  })
+
 })
