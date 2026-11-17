@@ -130,4 +130,22 @@ describe('local-only administrative preview', () => {
     } finally { view.cleanup() }
   })
 
+  it('announces empty filtered results to assistive technology', async () => {
+    const view = mount()
+    try {
+      const filter = view.host.querySelector<HTMLSelectElement>('#status-filter')!
+      filter.value = 'closed'
+      filter.dispatchEvent(new Event('change', { bubbles: true }))
+      await nextTick()
+      const empty = view.host.querySelector('.admin-empty')
+      expect(empty?.getAttribute('role')).toBe('status')
+      expect(empty?.getAttribute('aria-live')).toBe('polite')
+      expect(empty?.textContent).toContain('Nenhuma solicitação fictícia')
+      filter.value = 'all'
+      filter.dispatchEvent(new Event('change', { bubbles: true }))
+      await nextTick()
+      expect(view.host.querySelector('.admin-empty')).toBeNull()
+    } finally { view.cleanup() }
+  })
+
 })
