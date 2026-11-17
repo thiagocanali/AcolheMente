@@ -8,7 +8,8 @@ Começar com uma aplicação web única, modular e simples. Evitar microserviço
 - Vue Router quando houver mais de uma área/rota.
 - CSS próprio com tokens e componentes acessíveis.
 - Vitest para testes unitários; Playwright para fluxos E2E.
-- Supabase para autenticação e persistência somente quando o fluxo estiver validado.
+- Neon PostgreSQL para persistência futura, somente após aprovação dos gates de produto, privacidade e segurança.
+- Autenticação independente do banco, a ser definida no Gate 4; avaliar Better Auth sem antecipar cadastro ou sessões reais.
 - Vercel para hospedagem, com variáveis de ambiente separadas por ambiente.
 
 ## Módulos lógicos

@@ -32,7 +32,8 @@ O primeiro MVP prioriza:
 
 - Vue 3 + TypeScript + Vite.
 - CSS próprio com componentes acessíveis.
-- Supabase (PostgreSQL e Auth) somente após validação do fluxo, da retenção e da arquitetura de segurança.
+- Neon PostgreSQL planejado para persistência futura, somente após aprovação dos gates de produto, privacidade e segurança.
+- Autenticação independente do Supabase, a definir no Gate 4 (Better Auth é uma opção em avaliação).
 - Vercel para hospedagem.
 - Vitest e Playwright para testes.
 
@@ -75,6 +76,7 @@ O GitHub Actions executa testes de componentes, typecheck (incluindo testes e co
 - [Modelo de ameaças do futuro painel](docs/security/ADMIN-THREAT-MODEL.md)
 - [Plano de homologação administrativa](docs/quality/ADMIN-HOMOLOGATION-PLAN.md)
 - [Arquitetura](docs/engineering/ARCHITECTURE.md)
+- [Preparação de infraestrutura Neon](docs/engineering/NEON-READINESS.md)
 - [Auditoria contínua de dependências](docs/engineering/DEPENDENCY-AUDIT.md)
 - [Revisão técnica de 2026-11-11](docs/engineering/REVIEW-2026-11-11.md)
 - [Privacidade e segurança](docs/compliance/PRIVACY-AND-SECURITY.md)

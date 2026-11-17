@@ -10,7 +10,7 @@ Construir uma plataforma acolhedora para aproximar pessoas e profissionais de Ps
 4. Não colete nem armazene prontuários, sintomas, diagnósticos, relatos terapêuticos ou outros dados clínicos no MVP.
 5. Minimize dados pessoais. Não exponha dados em logs, analytics, URLs, mensagens de erro ou ambientes de teste.
 6. Nunca coloque chaves privadas, tokens, senhas ou secrets no repositório. Use variáveis de ambiente e mantenha exemplos fictícios.
-7. Toda autorização deve ser aplicada no servidor e, quando Supabase for usado, reforçada por RLS. Não confie apenas na interface.
+7. Toda autorização deve ser aplicada no servidor e, quando PostgreSQL/Neon for utilizado, reforçada por RLS quando adequado e corretamente configurado. Não confie apenas na interface.
 8. Crianças e adolescentes exigem desenho específico de consentimento, representação legal, melhor interesse e revisão profissional/jurídica. Não habilite fluxo de menores sem aprovação explícita.
 9. A plataforma não diagnostica, não faz triagem clínica automatizada e não substitui o julgamento da psicóloga.
 10. Acessibilidade é requisito: HTML semântico, teclado, foco visível, contraste, mensagens compreensíveis e compatibilidade com leitores de tela.

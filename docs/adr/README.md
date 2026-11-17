@@ -5,3 +5,5 @@ Registre decisões relevantes em arquivos numerados, por exemplo `0001-start-as-
 Cada ADR deve conter: contexto, decisão, alternativas consideradas, consequências, riscos e status. Não use ADR para decisões triviais de implementação.
 
 - [0003 — Cabeçalhos de segurança da página estática](./0003-static-site-security-headers.md)
+
+- [0004 — Neon PostgreSQL como banco alvo](./0004-neon-postgres-target.md)
