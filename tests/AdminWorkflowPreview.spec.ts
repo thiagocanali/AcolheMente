@@ -148,4 +148,20 @@ describe('local-only administrative preview', () => {
     } finally { view.cleanup() }
   })
 
+  it('restores all demo records and clears the status filter', async () => {
+    const view = mount()
+    try {
+      const filter = view.host.querySelector<HTMLSelectElement>('#status-filter')!
+      filter.value = 'closed'
+      filter.dispatchEvent(new Event('change', { bubbles: true }))
+      await nextTick()
+      expect(view.host.querySelectorAll('.admin-card')).toHaveLength(0)
+      const reset = [...view.host.querySelectorAll<HTMLButtonElement>('button')].find(button => button.textContent?.includes('Restaurar'))!
+      reset.click()
+      await nextTick()
+      expect(filter.value).toBe('all')
+      expect(view.host.querySelectorAll('.admin-card')).toHaveLength(3)
+    } finally { view.cleanup() }
+  })
+
 })
