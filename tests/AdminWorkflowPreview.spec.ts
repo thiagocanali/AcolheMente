@@ -186,4 +186,46 @@ describe('local-only administrative preview', () => {
     } finally { view.cleanup() }
   })
 
+  it('updates only the selected fictional record when changing its status', async () => {
+    const view = mount()
+    try {
+      const cards = [...view.host.querySelectorAll<HTMLElement>('.admin-card')]
+      const first = cards[0]
+      const action = [...first.querySelectorAll<HTMLButtonElement>('button')].find(
+        button => button.textContent?.includes('em análise'),
+      )!
+      action.click()
+      await nextTick()
+      const updated = [...view.host.querySelectorAll<HTMLElement>('.admin-card')]
+      expect(updated[0].textContent).toContain('Em análise')
+      expect(updated[1].textContent).toContain('DEMO-002')
+      expect(updated[1].textContent).toContain('Em análise')
+      expect(updated[2].textContent).toContain('DEMO-003')
+      expect(updated[2].textContent).toContain('Contato registrado')
+    } finally { view.cleanup() }
+  })
+
+  it('supports the complete proposed workflow without allowing reopening', async () => {
+    const view = mount()
+    try {
+      const first = () => view.host.querySelector<HTMLElement>('.admin-card')!
+      const moveTo = async (label: string) => {
+        const action = [...first().querySelectorAll<HTMLButtonElement>('button')].find(
+          button => button.textContent?.includes(label),
+        )
+        expect(action).toBeDefined()
+        action!.click()
+        await nextTick()
+      }
+      await moveTo('em análise')
+      expect(first().textContent).toContain('Em análise')
+      await moveTo('contato registrado')
+      expect(first().textContent).toContain('Contato registrado')
+      await moveTo('encerrada')
+      expect(first().textContent).toContain('Encerrada')
+      expect(first().textContent).toContain('Estado final')
+      expect(first().querySelectorAll('button')).toHaveLength(0)
+    } finally { view.cleanup() }
+  })
+
 })
