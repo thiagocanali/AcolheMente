@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { describe, expect, it } from 'vitest'
 import ProfessionalProfile from '../src/components/ProfessionalProfile.vue'
+import { profileDemo } from '../src/preview/profileDemo'
 
 function render(profile?: { name: string; registration: string; introduction: string; modality?: string }) {
   const host = document.createElement('div')
@@ -11,6 +12,17 @@ function render(profile?: { name: string; registration: string; introduction: st
 }
 
 describe('professional profile review', () => {
+  it('identifies the populated demonstration and does not expose a contact action', () => {
+    const host = document.createElement('div')
+    const app = createApp(ProfessionalProfile, { profile: profileDemo, demonstration: true })
+    app.mount(host)
+    try {
+      expect(host.textContent).toContain('Demonstração com conteúdo fictício.')
+      expect(host.querySelector('h1')?.textContent).toBe('Perfil demonstrativo')
+      expect(host.querySelectorAll('dt')).toHaveLength(4)
+      expect(host.querySelectorAll('form, input, button, a:not([href^="#"])')).toHaveLength(0)
+    } finally { app.unmount() }
+  })
   it('shows an explicit pending state without invented credentials or contact actions', () => {
     const view = render()
     try {

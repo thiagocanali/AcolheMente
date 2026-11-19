@@ -3,6 +3,7 @@
 Mudanças relevantes do projeto serão registradas aqui.
 
 ## Unreleased
+- Adiciona demonstração fictícia preenchida do perfil em desenvolvimento e amplia a cobertura de isolamento em produção.
 - Adiciona prévia local do painel administrativo com registros fictícios, filtro, transições e restauração em memória, sem habilitar persistência ou acesso em produção.
 - Prepara componente de perfil com campos opcionais ocultos e prévia exclusiva do servidor de desenvolvimento em `?preview=profile`, sem publicar dados ou habilitar contato.
 - Corrige a auditoria de dependências para falhar em erros de consulta, relatórios inválidos e vulnerabilidades moderadas ou superiores; adiciona execução semanal e testes do validador.

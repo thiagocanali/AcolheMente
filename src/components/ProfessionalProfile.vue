@@ -1,5 +1,6 @@
 <script setup lang="ts">
 defineProps<{
+  demonstration?: boolean
   profile?: {
     name: string
     registration: string
@@ -15,6 +16,9 @@ defineProps<{
 <template>
   <div class="profile-preview">
     <a class="skip-link" href="#perfil">Pular para o conteúdo</a>
+    <div v-if="demonstration" class="profile-demo-notice">
+      <strong>Demonstração com conteúdo fictício.</strong> Não representa uma profissional real nem oferece atendimento.
+    </div>
     <header class="profile-header">
       <strong>AcolheMente</strong>
       <p>Prévia local para revisão — publicação pendente</p>
@@ -64,6 +68,7 @@ defineProps<{
 
 <style scoped>
 .profile-preview { min-height: 100vh; }
+.profile-demo-notice { padding: 16px 20px; text-align: center; background: #efe4d7; color: #624022; font-size: 14px; line-height: 1.7; }
 .profile-header, .profile-main, .profile-footer { width: min(100% - 40px, 900px); margin-inline: auto; }
 .profile-header { padding-block: 24px; border-bottom: 1px solid #cbd8cd; }
 .profile-header strong { font-size: 24px; }
