@@ -228,4 +228,22 @@ describe('local-only administrative preview', () => {
     } finally { view.cleanup() }
   })
 
+  it('identifies each fictional request in accessible action names', () => {
+    const view = mount()
+    try {
+      const cards = [...view.host.querySelectorAll<HTMLElement>('.admin-card')]
+      expect(cards).toHaveLength(3)
+      for (const card of cards) {
+        const id = card.querySelector('strong')!.textContent!
+        for (const action of card.querySelectorAll<HTMLButtonElement>('.admin-actions button')) {
+          expect(action.getAttribute('aria-label')).toBe(`Mover ${id} para ${action.textContent!.trim().replace(/^Mover para /, '')}`)
+        }
+      }
+      const names = [...view.host.querySelectorAll<HTMLButtonElement>('.admin-actions button')]
+        .map(button => button.getAttribute('aria-label'))
+      expect(names.some(name => name?.includes('DEMO-001'))).toBe(true)
+      expect(names.some(name => name?.includes('DEMO-002'))).toBe(true)
+    } finally { view.cleanup() }
+  })
+
 })
