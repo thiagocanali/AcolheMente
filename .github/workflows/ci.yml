@@ -38,3 +38,5 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Browser and accessibility tests
         run: npx playwright test
+      - name: Development preview browser tests
+        run: npm run test:previews

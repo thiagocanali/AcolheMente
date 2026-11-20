@@ -56,6 +56,7 @@ npm run typecheck
 npm run build
 npx playwright install chromium
 npm run test:e2e
+npm run test:previews
 npm audit
 ```
 

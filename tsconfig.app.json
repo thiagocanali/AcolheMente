@@ -30,6 +30,8 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "e2e/**/*.ts",
-    "playwright.config.ts"
+    "e2e-previews/**/*.ts",
+    "playwright.config.ts",
+    "playwright.previews.config.ts"
   ]
 }

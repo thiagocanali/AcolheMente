@@ -14,8 +14,8 @@
 | ID | Cenário | Resultado esperado | Estado atual |
 | --- | --- | --- | --- |
 | H-01 | Navegar pelo site institucional em desktop e celular | Página acessível, sem overflow ou regressão visual | Automatizado no E2E existente |
-| H-02 | Tentar abrir `?preview=admin` e `?preview=profile` no build de produção | Somente página institucional; nenhum dado fictício da prévia | Automatizado no E2E existente |
-| H-03 | Navegar por teclado na prévia administrativa | Controles alcançáveis, rótulos e feedback legíveis | Cobertura de componente existente; revisão manual pendente |
+| H-02 | Tentar abrir `?preview=admin`, `?preview=profile` e `?preview=profile-demo` no build de produção | Somente página institucional; nenhum dado fictício da prévia | Automatizado no E2E de produção |
+| H-03 | Navegar por teclado na prévia administrativa | Controles alcançáveis, rótulos e feedback legíveis | Automatizado no navegador da suíte de prévias; revisão humana pendente |
 | H-04 | Exercitar os 16 pares de estados | Apenas cinco transições válidas | Teste de domínio existente |
 | H-05 | Fornecer status inválidos e valores inesperados | Negar sem exceção ou eco de entrada | Teste de domínio existente |
 | H-06 | Ler lista sem sessão | 401 sem dados | Bloqueado: não existe API |
@@ -29,6 +29,10 @@
 | H-14 | Revisar conteúdo e mensagens com a profissional | Linguagem, campos e operação aprovados | Bloqueado: Gates 1 e 2 |
 
 ## Critérios de saída
+
+A suíte `npm run test:previews` executa as prévias reais no servidor de desenvolvimento em Chromium, nos projetos desktop e mobile. Cobre perfis vazio/preenchido, aviso de demonstração, foco pelo skip link, controles administrativos por teclado, transições isoladas, estado terminal, restauração ao recarregar, filtro vazio e reset, acessibilidade automática e largura de 320 px. Usa apenas textos e IDs fictícios.
+
+Ela é complementar ao `npm run test:e2e`, que verifica o build de produção e o isolamento das prévias. Uma suíte não substitui a outra. A configuração de prévias ocupa a porta 4176, exige que ela esteja livre e não reutiliza servidores existentes. Não verifica autenticação, autorização, API, persistência ou conformidade; esses cenários continuam bloqueados.
 
 1. Gates 1–4 aprovados e registrados antes de implementar backend e coleta.
 2. Todos os cenários H-01 a H-14 pertinentes executados em ambiente isolado com dados fictícios; nenhum cenário bloqueado pode ser marcado como aprovado.

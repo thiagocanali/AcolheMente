@@ -78,7 +78,7 @@ function reset() {
         <li v-for="item in visible" :key="item.id" class="admin-card">
           <div><strong>{{ item.id }}</strong><span class="admin-status">{{ labels[item.status] }}</span></div>
           <div class="admin-actions">
-            <button v-for="next in allowed(item.status)" :key="next" type="button" :aria-label="`Mover ${item.id} para ${labels[next].toLowerCase()}`" @click="move(item.id, next)">
+            <button v-for="next in allowed(item.status)" :key="next" type="button" :aria-label="`Mover para ${labels[next].toLowerCase()} (solicitação ${item.id})`" @click="move(item.id, next)">
               Mover para {{ labels[next].toLowerCase() }}
             </button>
             <span v-if="allowed(item.status).length === 0">Estado final</span>

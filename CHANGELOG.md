@@ -3,6 +3,8 @@
 Mudanças relevantes do projeto serão registradas aqui.
 
 ## Unreleased
+- Corrige os nomes acessíveis das ações administrativas para incluir o texto visível completo e o identificador fictício da solicitação.
+- Automatiza as prévias locais de perfil e painel no Chromium, com teclado, acessibilidade, transições, filtro e restauração; executa a suíte separada na CI sem substituir o teste de isolamento de produção.
 - Adiciona demonstração fictícia preenchida do perfil em desenvolvimento e amplia a cobertura de isolamento em produção.
 - Adiciona prévia local do painel administrativo com registros fictícios, filtro, transições e restauração em memória, sem habilitar persistência ou acesso em produção.
 - Prepara componente de perfil com campos opcionais ocultos e prévia exclusiva do servidor de desenvolvimento em `?preview=profile`, sem publicar dados ou habilitar contato.
