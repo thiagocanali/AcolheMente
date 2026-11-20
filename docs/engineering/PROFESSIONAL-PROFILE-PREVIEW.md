@@ -11,3 +11,5 @@ O componente `ProfessionalProfile.vue` recebe conteúdo por propriedades. Sem co
 Dados reais e qualquer versão pública continuam sujeitos ao checklist em `docs/product/PROFESSIONAL-PROFILE-REVIEW.md`. Passar propriedades ao componente não representa aprovação para publicação. Não preencher credenciais por inferência.
 
 Os testes usam somente textos explicitamente fictícios e verificam ausência de coleta, omissão de campos e escape de conteúdo.
+
+`npm run test:previews` verifica as duas versões no navegador, junto à prévia administrativa, incluindo teclado, acessibilidade automática e telas pequenas. O comando usa o servidor de desenvolvimento na porta 4176; os testes de isolamento do build continuam na suíte `npm run test:e2e`.

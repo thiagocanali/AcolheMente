@@ -236,7 +236,8 @@ describe('local-only administrative preview', () => {
       for (const card of cards) {
         const id = card.querySelector('strong')!.textContent!
         for (const action of card.querySelectorAll<HTMLButtonElement>('.admin-actions button')) {
-          expect(action.getAttribute('aria-label')).toBe(`Mover ${id} para ${action.textContent!.trim().replace(/^Mover para /, '')}`)
+          const visibleLabel = action.textContent!.trim()
+          expect(action.getAttribute('aria-label')).toBe(`${visibleLabel} (solicitação ${id})`)
         }
       }
       const names = [...view.host.querySelectorAll<HTMLButtonElement>('.admin-actions button')]
