@@ -70,6 +70,38 @@ test('admin empty filter is announced and reset restores all records and the fil
   await expect(empty).toHaveCount(0)
 })
 
+test('keyboard focus follows the workflow and identifies a closed record', async ({ page }) => {
+  await page.goto('/?preview=admin')
+  const firstAction = page.getByRole('button', { name: 'Mover para em análise (solicitação DEMO-001)', exact: true })
+  await firstAction.focus()
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('button', { name: 'Mover para contato registrado (solicitação DEMO-001)', exact: true })).toBeFocused()
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('button', { name: 'Mover para encerrada (solicitação DEMO-001)', exact: true })).toBeFocused()
+  await page.keyboard.press('Enter')
+  const card = page.getByRole('listitem', { name: 'DEMO-001', exact: true })
+  await expect(card).toBeFocused()
+  await expect(card).toHaveAccessibleDescription('Encerrada')
+  await expect(card.getByRole('button')).toHaveCount(0)
+  await page.keyboard.press('Tab')
+  await expect(page.getByRole('button', { name: 'Mover para contato registrado (solicitação DEMO-002)', exact: true })).toBeFocused()
+})
+
+test('keyboard focus returns to the filter when the updated record is hidden', async ({ page }) => {
+  await page.goto('/?preview=admin')
+  const filter = page.getByLabel('Filtrar por situação')
+  await filter.selectOption('received')
+  await page.getByRole('button', { name: 'Mover para em análise (solicitação DEMO-001)', exact: true }).focus()
+  await page.keyboard.press('Enter')
+  await expect(filter).toBeFocused()
+  await expect(page.getByRole('status').filter({ hasText: 'Nenhuma solicitação fictícia neste filtro.' })).toBeVisible()
+  await page.keyboard.press('Tab')
+  await expect(page.getByRole('button', { name: 'Restaurar demonstração', exact: true })).toBeFocused()
+  await page.keyboard.press('Enter')
+  await expect(filter).toHaveValue('all')
+  await expect(page.getByRole('listitem')).toHaveCount(3)
+})
+
 test('previews have no automatic accessibility violations, overflow or runtime errors', async ({ page }) => {
   const errors: string[] = []
   page.on('pageerror', error => errors.push(error.message))

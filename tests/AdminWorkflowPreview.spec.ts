@@ -11,6 +11,74 @@ function mount() {
 }
 
 describe('local-only administrative preview', () => {
+  it('moves focus to the next action when a focused transition disappears', async () => {
+    const view = mount()
+    try {
+      const first = view.host.querySelector<HTMLElement>('.admin-card')!
+      const action = first.querySelector<HTMLButtonElement>('button')!
+      action.focus()
+      action.click()
+      await nextTick()
+      expect(document.activeElement).toBe(first.querySelector('button'))
+      expect(document.activeElement?.getAttribute('aria-label')).toContain('contato registrado')
+    } finally { view.cleanup() }
+  })
+
+  it('focuses the named card when the record reaches its terminal state', async () => {
+    const view = mount()
+    try {
+      const first = view.host.querySelector<HTMLElement>('.admin-card')!
+      const close = [...first.querySelectorAll('button')].find(button => button.textContent?.includes('encerrada'))!
+      close.focus()
+      close.click()
+      await nextTick()
+      expect(document.activeElement).toBe(first)
+      expect(first.getAttribute('tabindex')).toBe('-1')
+      expect(first.getAttribute('aria-labelledby')).toBe(first.querySelector('strong')?.id)
+      expect(first.getAttribute('aria-describedby')).toBe(first.querySelector('.admin-status')?.id)
+      expect(first.querySelector('.admin-status')?.textContent).toBe('Encerrada')
+    } finally { view.cleanup() }
+  })
+
+  it('returns focus to the filter when a transition removes its record from the list', async () => {
+    const view = mount()
+    try {
+      const filter = view.host.querySelector('select')!
+      filter.value = 'received'
+      filter.dispatchEvent(new Event('change', { bubbles: true }))
+      await nextTick()
+      const action = view.host.querySelector<HTMLButtonElement>('.admin-card button')!
+      action.focus()
+      action.click()
+      await nextTick()
+      expect(view.host.querySelectorAll('.admin-card')).toHaveLength(0)
+      expect(document.activeElement).toBe(filter)
+    } finally { view.cleanup() }
+  })
+
+  it('preserves focus elsewhere when an unfocused transition is invoked', async () => {
+    const view = mount()
+    try {
+      const filter = view.host.querySelector('select')!
+      filter.focus()
+      view.host.querySelector<HTMLButtonElement>('.admin-card button')!.click()
+      await nextTick()
+      expect(document.activeElement).toBe(filter)
+    } finally { view.cleanup() }
+  })
+
+  it('does not override a focus change made before the transition finishes rendering', async () => {
+    const view = mount()
+    try {
+      const action = view.host.querySelector<HTMLButtonElement>('.admin-card button')!
+      const filter = view.host.querySelector('select')!
+      action.focus()
+      action.click()
+      filter.focus()
+      await nextTick()
+      expect(document.activeElement).toBe(filter)
+    } finally { view.cleanup() }
+  })
   it('renders fictional records without inputs for personal data', () => {
     const view = mount()
     try {
@@ -77,7 +145,8 @@ describe('local-only administrative preview', () => {
     try {
       expect(view.host.querySelectorAll('.admin-actions button[type="button"]').length).toBeGreaterThan(0)
       expect(view.host.querySelectorAll('button:not([type="button"])')).toHaveLength(0)
-      expect(view.host.querySelectorAll('[tabindex="-1"]')).toHaveLength(1)
+      expect(view.host.querySelector('main')?.getAttribute('tabindex')).toBe('-1')
+      expect(view.host.querySelectorAll('[tabindex]:not([tabindex="-1"])')).toHaveLength(0)
       expect(view.host.querySelectorAll('[onclick], [onkeydown]')).toHaveLength(0)
     } finally { view.cleanup() }
   })

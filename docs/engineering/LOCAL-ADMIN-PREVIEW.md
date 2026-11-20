@@ -8,6 +8,8 @@ A prévia inclui três solicitações identificadas exclusivamente por IDs fict�
 
 A implementação utiliza as regras puras em `src/domain/administrative-request.ts`. O objetivo é revisar navegação, rótulos e transições com a profissional piloto, sem coletar informações de pacientes.
 
+Após uma transição acionada no controle focado, o foco segue para a primeira ação disponível do mesmo registro. Se o estado for final, segue para o cartão, identificado pelo ID fictício e descrito pelo estado. Se o filtro ocultar o registro atualizado, retorna ao filtro. Os cartões não entram na sequência normal de Tab; não há restauração quando o controle acionado não estava focado ou quando o foco já foi movido para outro elemento.
+
 Antes de qualquer painel real: aprovar os gates 1–4 de `docs/product/MVP-VALIDATION-GATES.md`, especificar autorização no servidor e isolamento de registros, e testar acesso negado, retenção e exclusão. Esta prévia **não comprova conformidade, segurança ou prontidão operacional**.
 
 Para executar a homologação automatizada no navegador, use `npm run test:previews` após instalar Chromium com `npx playwright install chromium`. A suíte usa a porta 4176 e verifica o fluxo fictício no servidor de desenvolvimento; a CI executa essa etapa além dos testes do build de produção. Veja a matriz em `docs/quality/ADMIN-HOMOLOGATION-PLAN.md`.

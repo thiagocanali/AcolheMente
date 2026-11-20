@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import {
   requestStatuses,
   transitionRequest,
@@ -22,9 +22,13 @@ const requests = ref<DemoRequest[]>([
 ])
 const filter = ref<'all' | RequestStatus>('all')
 const message = ref('')
+const statusFilter = ref<HTMLSelectElement | null>(null)
 const visible = computed(() => requests.value.filter(item => filter.value === 'all' || item.status === filter.value))
 
-function move(id: string, next: RequestStatus) {
+async function move(id: string, next: RequestStatus, event: MouseEvent) {
+  const trigger = event.currentTarget as HTMLButtonElement
+  const card = trigger.closest<HTMLElement>('.admin-card')
+  const hadFocus = document.activeElement === trigger
   const item = requests.value.find(request => request.id === id)
   if (!item) return
   const result = transitionRequest(item.status, next)
@@ -36,6 +40,15 @@ function move(id: string, next: RequestStatus) {
     request.id === id ? { ...request, status: result.status } : request,
   )
   message.value = 'Estado atualizado apenas nesta prévia local.'
+  await nextTick()
+  // Restore context only when this action removed the focused control.
+  // Preserve a focus change made elsewhere while the view was updating.
+  if (!hadFocus || trigger.isConnected || document.activeElement !== document.body) return
+  if (card?.isConnected) {
+    (card.querySelector<HTMLButtonElement>('button') ?? card).focus()
+  } else {
+    statusFilter.value?.focus()
+  }
 }
 
 function allowed(status: RequestStatus): RequestStatus[] {
@@ -66,7 +79,7 @@ function reset() {
       <p>Esta prévia funciona somente no servidor de desenvolvimento. Os registros são fictícios e as alterações desaparecem ao recarregar a página. Não é um painel pronto para produção.</p>
       <div class="admin-controls">
         <label for="status-filter">Filtrar por situação</label>
-        <select id="status-filter" v-model="filter">
+        <select id="status-filter" ref="statusFilter" v-model="filter">
           <option value="all">Todas</option>
           <option v-for="status in requestStatuses" :key="status" :value="status">{{ labels[status] }}</option>
         </select>
@@ -75,10 +88,10 @@ function reset() {
       <p role="status" aria-live="polite">{{ message }}</p>
       <p v-if="visible.length === 0" class="admin-empty" role="status" aria-live="polite">Nenhuma solicitação fictícia neste filtro.</p>
       <ul v-else class="admin-list" aria-label="Solicitações fictícias">
-        <li v-for="item in visible" :key="item.id" class="admin-card">
-          <div><strong>{{ item.id }}</strong><span class="admin-status">{{ labels[item.status] }}</span></div>
+        <li v-for="item in visible" :key="item.id" class="admin-card" tabindex="-1" :aria-labelledby="`request-title-${item.id}`" :aria-describedby="`request-status-${item.id}`">
+          <div><strong :id="`request-title-${item.id}`">{{ item.id }}</strong><span :id="`request-status-${item.id}`" class="admin-status">{{ labels[item.status] }}</span></div>
           <div class="admin-actions">
-            <button v-for="next in allowed(item.status)" :key="next" type="button" :aria-label="`Mover para ${labels[next].toLowerCase()} (solicitação ${item.id})`" @click="move(item.id, next)">
+            <button v-for="next in allowed(item.status)" :key="next" type="button" :aria-label="`Mover para ${labels[next].toLowerCase()} (solicitação ${item.id})`" @click="move(item.id, next, $event)">
               Mover para {{ labels[next].toLowerCase() }}
             </button>
             <span v-if="allowed(item.status).length === 0">Estado final</span>
@@ -104,7 +117,7 @@ function reset() {
 .admin-controls label { font-weight: 700; }
 .admin-preview select, .admin-preview button { padding: 11px 14px; border: 1px solid #9fb7a4; border-radius: 9px; background: white; color: #23352f; cursor: pointer; }
 .admin-preview button:hover { background: #e7eee4; }
-.admin-preview button:focus-visible, .admin-preview select:focus-visible { outline: 3px solid #d18f6c; outline-offset: 3px; }
+.admin-preview button:focus-visible, .admin-preview select:focus-visible, .admin-card:focus-visible { outline: 3px solid #d18f6c; outline-offset: 3px; }
 .admin-list { padding: 0; list-style: none; display: grid; gap: 15px; }
 .admin-card { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; align-items: center; padding: 20px; background: #fff; border: 1px solid #d9e3d9; border-radius: 14px; }
 .admin-card > div:first-child { display: flex; flex-direction: column; gap: 8px; }
