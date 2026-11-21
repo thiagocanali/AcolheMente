@@ -2,7 +2,15 @@
 
 **Status:** arquitetura futura proposta, não implantação nem aprovação dos gates.
 
-## Inventário verificado (2026-11-15)
+## Estado de continuidade verificado em 2026-11-21
+
+A direção do ADR 0004 está integrada à `main` desde `5a4e74d` (PR #38). A consulta atual confirma #37/#38 integrados e #32–#36 fechados sem merge. Portanto, referências abaixo a essas PRs abertas ou aguardando integração são registros históricos de 15/11, não a fila atual. Não presumir que uma PR fechada foi incorporada; conferir os commits e o código correspondente.
+
+A versão revisada é `004f1f2`: aplicação pública estática, prévias locais de perfil vazio, perfil fictício e administração, sem API/Auth/persistência. Os Gates 1–3 continuam sem evidência de aprovação nos documentos revisados; o Gate 4 permanece pendente. Não houve consulta de recursos Neon nesta retomada: o inventário externo de 15/11 não foi reconfirmado e não prova inexistência de serviços sob outro nome.
+
+Próxima ação de produto: registrar as decisões profissionais e de privacidade pendentes nos gates existentes. Não criar banco, migrar serviços ou escolher Auth definitivamente a partir deste inventário. Evidências atuais e fila de continuidade: [revisão de 21/11](./REVIEW-2026-11-21.md).
+
+## Inventário histórico verificado (2026-11-15)
 
 - Frontend: Vue 3, TypeScript e Vite, com landing pública e prévias exclusivamente locais de perfil e fluxo administrativo.
 - Dependências do `package.json`: Vue; ferramentas de desenvolvimento Vite, Vitest, TypeScript, Playwright e axe. **Sem** `@supabase/supabase-js`, cliente PostgreSQL ou biblioteca de autenticação.
@@ -37,7 +45,7 @@
 
 Não criar banco, tabelas de pacientes, cadastro, API ou coleta real apenas por decisão de padronização. A política de migração não substitui os gates de proteção de dados. A aplicação pública atual deve permanecer disponível e sem mudanças de infraestrutura de produção.
 
-## Fila de execução e evidências
+## Fila histórica de execução e evidências (2026-11-15)
 
 | Prioridade | Tarefa | Estado | Evidência / dependência |
 | --- | --- | --- | --- |
@@ -66,7 +74,7 @@ Cinco especificações versionadas na PR #38, ainda **não** implementadas como 
 
 A verificação automatizada `tests/infrastructure-boundaries.test.mjs` também exige que as prévias fictícias de administração e perfil permaneçam protegidas por `import.meta.env.DEV`. Esse teste é uma barreira de regressão estática, **não** substitui teste de autenticação ou autorização server-side quando houver backend. Commit de implementação: `604873c`; CI do commit deve ser verificada antes de marcar como validada.
 
-## Auditoria de continuidade — 2026-11-15
+## Auditoria histórica de continuidade — 2026-11-15
 
 - PRs #32–#38 consultadas: todas abertas; CI do HEAD consultado anteriormente aprovada nas PRs #32–#37. PR #38 também tinha CI aprovada no HEAD anterior `985e932`; novas alterações desta rodada aguardam workflow próprio.
 - Sobreposição confirmada: #32/#33/#34 alteram testes administrativos; #35/#36 alteram o mesmo teste E2E. Não integrar em lote cego; revalidar após cada integração.

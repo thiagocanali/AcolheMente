@@ -79,7 +79,8 @@ O GitHub Actions executa testes de componentes, typecheck (incluindo testes e co
 - [Arquitetura](docs/engineering/ARCHITECTURE.md)
 - [Preparação de infraestrutura Neon](docs/engineering/NEON-READINESS.md)
 - [Auditoria contínua de dependências](docs/engineering/DEPENDENCY-AUDIT.md)
-- [Revisão técnica de 2026-11-11](docs/engineering/REVIEW-2026-11-11.md)
+- [Ponto de retomada verificado em 2026-11-21](docs/engineering/REVIEW-2026-11-21.md)
+- [Revisão histórica de 2026-11-11](docs/engineering/REVIEW-2026-11-11.md)
 - [Privacidade e segurança](docs/compliance/PRIVACY-AND-SECURITY.md)
 - [Modelo mínimo de dados administrativos](docs/compliance/ADMINISTRATIVE-DATA-MODEL.md)
 - [Ética e conformidade](docs/compliance/ETHICS-AND-COMPLIANCE.md)
@@ -90,7 +91,7 @@ O GitHub Actions executa testes de componentes, typecheck (incluindo testes e co
 
 A landing page institucional está implementada. O fluxo administrativo ainda não está pronto para persistência: campos, base legal, aviso de privacidade, prazo de retenção, descarte e permissões precisam ser validados antes de receber dados reais. A documentação atual define uma proposta conservadora, não uma aprovação jurídica ou profissional.
 
-Em 2026-11-11, a Vercel informa um deploy de produção com status `READY` para o commit `d3b3337`. Esse status confirma o build publicado, mas não substitui a validação dos fluxos no navegador.
+Em 2026-11-21, a consulta à Vercel confirmou produção `READY` para `004f1f2` (PR #51). Perfil vazio, perfil demonstrativo e painel fictício estão implementados somente no servidor de desenvolvimento; o build mantém a página institucional. Não há API, autenticação ou persistência implementadas. Evidências e próximos passos estão no [ponto de retomada](docs/engineering/REVIEW-2026-11-21.md); status de deploy e CI não aprovam os gates operacionais.
 
 ## Licença
 
