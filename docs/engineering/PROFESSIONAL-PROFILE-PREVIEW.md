@@ -13,3 +13,5 @@ Dados reais e qualquer versão pública continuam sujeitos ao checklist em `docs
 Os testes usam somente textos explicitamente fictícios e verificam ausência de coleta, omissão de campos e escape de conteúdo.
 
 `npm run test:previews` verifica as duas versões no navegador, junto à prévia administrativa, incluindo teclado, acessibilidade automática e telas pequenas. O comando usa o servidor de desenvolvimento na porta 4176; os testes de isolamento do build continuam na suíte `npm run test:e2e`.
+
+As prévias anunciam o carregamento e oferecem recuperação se o componente ou os textos demonstrativos não carregarem: recarregar a mesma URL ou voltar ao site institucional. A mensagem é genérica, não exibe caminhos técnicos e recebe foco para navegação por teclado. A suíte simula as falhas dos módulos e testa a recuperação. Esse tratamento começa após a execução do main.ts, não cobre sua própria ausência nem valida serviços externos.

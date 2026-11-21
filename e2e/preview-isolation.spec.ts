@@ -10,6 +10,8 @@ test.describe('production preview isolation', () => {
       await expect(page.getByText('Conteúdo profissional pendente')).toHaveCount(0)
       await expect(page.locator('.admin-card')).toHaveCount(0)
       await expect(page.locator('.profile-preview')).toHaveCount(0)
+      await expect(page.getByRole('button', { name: 'Tentar novamente', exact: true })).toHaveCount(0)
+      await expect(page.getByText('Carregando prévia local…', { exact: true })).toHaveCount(0)
       await expect(page.getByText('Demonstração com conteúdo fictício.')).toHaveCount(0)
       await expect(page.locator('body')).not.toContainText('DEMO-001')
       const results = await new AxeBuilder({ page }).analyze()

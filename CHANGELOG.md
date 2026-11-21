@@ -3,6 +3,7 @@
 Mudanças relevantes do projeto serão registradas aqui.
 
 ## Unreleased
+- Adiciona feedback de carregamento e recuperação acessível para falhas nos módulos das prévias locais, com nova tentativa por recarga e retorno ao site institucional, sem exibir o erro técnico.
 - Preserva o contexto de teclado após transições administrativas locais: próxima ação, cartão terminal identificado ou filtro quando o registro sai da lista; cobre o fluxo com testes de componente e navegador.
 - Corrige os nomes acessíveis das ações administrativas para incluir o texto visível completo e o identificador fictício da solicitação.
 - Automatiza as prévias locais de perfil e painel no Chromium, com teclado, acessibilidade, transições, filtro e restauração; executa a suíte separada na CI sem substituir o teste de isolamento de produção.
