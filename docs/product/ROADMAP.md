@@ -11,11 +11,14 @@
 ## Fase 1 — Presença profissional
 - [x] Configurar Vue 3 + TypeScript + Vite e landing page institucional.
 - [x] Implementar componentes básicos acessíveis, SEO e testes do menu.
+- [x] Preparar prévias locais de perfil vazio/preenchido com conteúdo fictício, sem publicação profissional.
 - [ ] Validar e publicar perfil profissional somente após aprovação da profissional (seguir [checklist de revisão](./PROFESSIONAL-PROFILE-REVIEW.md)).
 - [ ] Concluir os gates de validação antes de implementar persistência (seguir [gates do MVP](./MVP-VALIDATION-GATES.md)).
 - [ ] Revisão final de conteúdo e acessibilidade.
 
 ## Fase 2 — Solicitações administrativas
+
+- [x] Preparar protótipo local em memória e testes das regras propostas, filtros, foco, recuperação de carregamento e isolamento do build. Esta entrega não equivale ao painel protegido nem à aprovação do fluxo.
 - [ ] Validar a [especificação proposta do ciclo de vida das solicitações](./ADMINISTRATIVE-REQUEST-LIFECYCLE.md) com a profissional e revisão de privacidade.
 - [ ] Fechar o modelo de dados com a profissional e revisão de privacidade.
 - [ ] Definir política de retenção, exclusão e backups.
